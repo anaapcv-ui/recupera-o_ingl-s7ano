@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚡ ENGLISH HEROES — Simulado Interativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --amarelo: #ffd23f;
+  --amarelo-claro: #fff5b8;
+  --amarelo-escuro: #f4a300;
+  --azul: #1c75bc;
+  --azul-claro: #4dafe8;
+  --azul-escuro: #0a2540;
+  --azul-deep: #051a30;
+  --vermelho: #e63946;
+  --vermelho-escuro: #b8232f;
+  --rosa: #ff6f91;
+  --verde: #3a9d4a;
+  --cinza: #6c757d;
+  --cinza-claro: #e9ecef;
+  --preto: #1a1a1a;
+  --branco: #fffdf6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Nunito', sans-serif;
+  color: var(--preto);
+  background: #f5e16a;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(0,0,0,0.05) 1px, transparent 1.5px),
+    radial-gradient(circle at 70% 60%, rgba(0,0,0,0.05) 1px, transparent 1.5px);
+  background-size: 16px 16px, 22px 22px;
+  background-position: 0 0, 8px 8px;
+  min-height: 100vh;
+  padding: 16px;
+  line-height: 1.55;
+}
+.container { max-width: 820px; margin: 0 auto; }
+
+/* ===== BARRA DE RESULTADO (FIXA NO TOPO APÓS ENVIO) — VERMELHA ===== */
+.barra-resultado {
+  display: none;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--vermelho);
+  color: var(--branco);
+  border: 3px solid var(--preto);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  box-shadow: 4px 4px 0 var(--preto);
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.barra-resultado.visivel { display: flex; }
+.br-acertos {
+  font-family: 'Bangers', cursive;
+  font-size: 1.1em;
+  letter-spacing: 1.5px;
+  color: var(--amarelo);
+  -webkit-text-stroke: 0.5px var(--preto);
+}
+.br-codigo {
+  background: var(--amarelo);
+  color: var(--preto);
+  padding: 6px 14px;
+  border: 2.5px solid var(--preto);
+  border-radius: 6px;
+  font-family: 'Bungee', cursive;
+  letter-spacing: 1.5px;
+  font-size: 0.95em;
+  font-weight: 800;
+}
+
+/* ===== CAPA — AZUL ESCURO ===== */
+.capa {
+  background: var(--azul-escuro);
+  border: 4px solid var(--preto);
+  border-radius: 14px;
+  padding: 30px 22px 24px;
+  text-align: center;
+  box-shadow: 8px 8px 0 var(--vermelho);
+  margin-bottom: 0;
+  position: relative;
+  overflow: hidden;
+  border-bottom: none;
+  border-radius: 14px 14px 0 0;
+}
+.capa::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,210,63,0.15) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+  pointer-events: none;
+}
+.capa-conteudo { position: relative; z-index: 2; }
+.capa h1 {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(2.2em, 6.5vw, 3em);
+  color: var(--vermelho);
+  letter-spacing: 3px;
+  -webkit-text-stroke: 2px var(--preto);
+  text-shadow: 4px 4px 0 var(--amarelo);
+  line-height: 1;
+  margin-bottom: 8px;
+  transform: rotate(-1deg);
+}
+.capa .sub {
+  font-family: 'Bungee', cursive;
+  color: var(--amarelo);
+  font-size: 0.85em;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+.capa .narrador {
+  background: var(--vermelho);
+  color: var(--branco);
+  display: inline-block;
+  padding: 6px 14px;
+  font-weight: 700;
+  font-size: 0.85em;
+  border: 2.5px solid var(--preto);
+  border-radius: 6px;
+  transform: rotate(-1deg);
+  box-shadow: 3px 3px 0 var(--preto);
+}
+
+/* ===== BARRA VERMELHA ABAIXO DA CAPA ===== */
+.barra-vermelha {
+  background: var(--vermelho);
+  color: var(--branco);
+  font-family: 'Bungee', cursive;
+  font-size: 0.85em;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 10px 12px;
+  border: 4px solid var(--preto);
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+  margin-bottom: 22px;
+  box-shadow: 8px 8px 0 var(--preto);
+}
+
+/* ===== PAINEL DE INFO E SAVE ===== */
+.painel-info {
+  background: var(--branco);
+  border: 3px solid var(--preto);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 4px 4px 0 var(--preto);
+  font-size: 0.9em;
+  font-weight: 600;
+}
+.painel-info b { color: var(--vermelho); }
+.save-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
+.btn-save {
+  background: var(--azul-escuro);
+  color: var(--branco);
+  border: 2.5px solid var(--preto);
+  padding: 5px 11px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.78em;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--preto);
+  transition: all 0.1s;
+}
+.btn-save:hover { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--preto); }
+.btn-save.zerar { background: var(--vermelho); }
+.btn-save.import { background: var(--verde); }
+
+/* ===== BARRA DE PROGRESSO ===== */
+.progresso {
+  background: var(--branco);
+  border: 3px solid var(--preto);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+  box-shadow: 3px 3px 0 var(--preto);
+}
+.progresso-info {
+  font-size: 0.85em;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--preto);
+}
+.progresso-info span { color: var(--vermelho); font-family: 'Bungee', cursive; }
+.progresso-bar {
+  height: 14px;
+  background: var(--cinza-claro);
+  border: 2px solid var(--preto);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.progresso-fill {
+  height: 100%;
+  background: var(--vermelho);
+  width: 0%;
+  transition: width 0.3s;
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,255,255,0.2) 8px, rgba(255,255,255,0.2) 16px);
+}
+
+/* ===== INSTRUÇÕES ===== */
+.instrucoes {
+  background: var(--azul-escuro);
+  color: var(--branco);
+  border: 3px solid var(--preto);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 22px;
+  box-shadow: 4px 4px 0 var(--vermelho);
+}
+.instrucoes h3 {
+  font-family: 'Bangers', cursive;
+  font-size: 1.3em;
+  letter-spacing: 1.5px;
+  color: var(--amarelo);
+  -webkit-text-stroke: 0.5px var(--preto);
+  margin-bottom: 8px;
+}
+.instrucoes ul { padding-left: 18px; }
+.instrucoes li { margin: 4px 0; font-size: 0.9em; }
+.instrucoes b { color: var(--amarelo); }
+
+/* ===== QUESTÕES ===== */
+.questao {
+  background: var(--branco);
+  border: 3px solid var(--preto);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: 4px 4px 0 var(--preto);
+}
+.questao.bloqueada { pointer-events: none; }
+
+.q-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.q-numero {
+  background: var(--azul-escuro);
+  color: var(--amarelo);
+  font-family: 'Bangers', cursive;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border: 2.5px solid var(--preto);
+  border-radius: 6px;
+  -webkit-text-stroke: 0.5px var(--preto);
+  flex-shrink: 0;
+}
+.q-tema {
+  font-family: 'Bungee', cursive;
+  font-size: 0.7em;
+  color: var(--vermelho);
+  letter-spacing: 1px;
+  background: var(--cinza-claro);
+  padding: 3px 8px;
+  border-radius: 5px;
+  border: 1.5px solid var(--preto);
+}
+.q-texto {
+  font-size: 1em;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--preto);
+  line-height: 1.5;
+}
+.q-texto i { color: var(--azul-escuro); }
+.q-texto b { background: var(--amarelo); padding: 1px 5px; border-radius: 3px; font-weight: 800; }
+
+/* email/comic box */
+.q-box {
+  background: var(--cinza-claro);
+  border: 2px solid var(--preto);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.92em;
+  font-style: italic;
+  border-left: 5px solid var(--azul);
+}
+.q-box u { color: var(--vermelho); font-weight: 700; }
+
+.alternativas { display: grid; gap: 6px; }
+.alt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--cinza-claro);
+  border: 2.5px solid var(--preto);
+  border-radius: 6px;
+  padding: 9px 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 0.93em;
+  font-weight: 600;
+}
+.alt:hover { background: var(--amarelo-claro); transform: translate(1px,1px); }
+.alt.selecionada {
+  background: var(--azul-escuro);
+  color: var(--branco);
+  box-shadow: 2px 2px 0 var(--preto);
+}
+.alt input { display: none; }
+.alt-letra {
+  font-family: 'Bungee', cursive;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--preto);
+  color: var(--amarelo);
+  border-radius: 50%;
+  font-size: 0.78em;
+  flex-shrink: 0;
+}
+.alt.selecionada .alt-letra { background: var(--amarelo); color: var(--preto); }
+
+/* APÓS ENVIO */
+.alt.correta-marca {
+  background: var(--verde) !important;
+  color: var(--branco) !important;
+  border-color: var(--preto) !important;
+}
+.alt.correta-marca .alt-letra { background: var(--amarelo); color: var(--preto); }
+.alt.errada-marca {
+  background: #f0f0f0 !important;
+  color: #555 !important;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+.alt.errada-marca .alt-letra { background: #888; color: var(--branco); }
+.explicacao {
+  display: none;
+  margin-top: 10px;
+  background: var(--amarelo-claro);
+  border-left: 5px solid var(--vermelho);
+  border-radius: 0 6px 6px 0;
+  padding: 10px 14px;
+  font-size: 0.88em;
+}
+.explicacao.visivel { display: block; }
+.explicacao b { color: var(--vermelho); font-family: 'Bungee', cursive; letter-spacing: 0.5px; }
+
+/* ===== BOTÃO ENVIAR — VERMELHO ===== */
+.btn-enviar {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  font-family: 'Bangers', cursive;
+  font-size: 1.4em;
+  letter-spacing: 2px;
+  border: 3px solid var(--preto);
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 22px 0;
+  transition: all 0.15s;
+  -webkit-text-stroke: 0.5px var(--preto);
+}
+.btn-enviar.desabilitado {
+  background: var(--cinza-claro);
+  color: var(--cinza);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.btn-enviar.ativo {
+  background: var(--vermelho);
+  color: var(--branco);
+  box-shadow: 5px 5px 0 var(--preto);
+}
+.btn-enviar.ativo:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 var(--preto);
+}
+
+/* ===== TELA DE RESULTADO ===== */
+.resultado {
+  display: none;
+  background: var(--azul-escuro);
+  color: var(--branco);
+  border: 4px solid var(--preto);
+  border-radius: 14px;
+  padding: 30px 22px;
+  margin: 22px 0;
+  box-shadow: 8px 8px 0 var(--vermelho);
+  text-align: center;
+}
+.resultado.visivel { display: block; }
+.resultado h2 {
+  font-family: 'Bangers', cursive;
+  font-size: 2.2em;
+  color: var(--amarelo);
+  letter-spacing: 3px;
+  -webkit-text-stroke: 2px var(--preto);
+  text-shadow: 4px 4px 0 var(--vermelho);
+  margin-bottom: 16px;
+  transform: rotate(-2deg);
+}
+.placar {
+  font-family: 'Bungee', cursive;
+  font-size: 1.6em;
+  color: var(--amarelo);
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+.placar b { color: var(--vermelho); -webkit-text-stroke: 1px var(--amarelo); font-size: 1.4em; }
+.codigo-box {
+  background: var(--amarelo);
+  color: var(--preto);
+  border: 3px solid var(--preto);
+  border-radius: 10px;
+  padding: 18px 14px;
+  margin: 18px 0;
+}
+.codigo-label {
+  font-family: 'Bungee', cursive;
+  font-size: 0.85em;
+  letter-spacing: 1.5px;
+  color: var(--vermelho);
+  margin-bottom: 6px;
+}
+.codigo-valor {
+  font-family: 'Bungee', cursive;
+  font-size: 1.8em;
+  letter-spacing: 3px;
+  color: var(--preto);
+  margin-bottom: 6px;
+  -webkit-text-stroke: 0.5px var(--vermelho);
+}
+.codigo-instrucao { font-size: 0.85em; color: var(--cinza); }
+
+/* ===== ANÁLISE POR TEMA ===== */
+.analise {
+  background: var(--branco);
+  border: 3px solid var(--preto);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  text-align: left;
+  box-shadow: 4px 4px 0 var(--vermelho);
+  color: var(--preto);
+}
+.analise h3 {
+  font-family: 'Bangers', cursive;
+  font-size: 1.2em;
+  color: var(--azul-escuro);
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+  -webkit-text-stroke: 0.3px var(--preto);
+}
+.analise-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--cinza-claro);
+  font-size: 0.88em;
+}
+.analise-item:last-child { border-bottom: none; }
+.analise-tema { font-weight: 700; }
+.analise-pct { font-family: 'Bungee', cursive; font-size: 0.85em; }
+.analise-pct.bom { color: var(--verde); }
+.analise-pct.medio { color: var(--amarelo-escuro); }
+.analise-pct.fraco { color: var(--vermelho); }
+
+/* ===== TRAVA DO GABARITO ===== */
+.trava {
+  background: var(--vermelho);
+  color: var(--branco);
+  border: 3px solid var(--preto);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  text-align: center;
+  box-shadow: 4px 4px 0 var(--preto);
+}
+.trava-titulo {
+  font-family: 'Bangers', cursive;
+  font-size: 1.4em;
+  letter-spacing: 1.5px;
+  color: var(--amarelo);
+  -webkit-text-stroke: 0.5px var(--preto);
+  margin-bottom: 8px;
+}
+.trava input {
+  width: 100%;
+  max-width: 280px;
+  padding: 10px 14px;
+  font-family: 'Bungee', cursive;
+  font-size: 1em;
+  letter-spacing: 2px;
+  border: 3px solid var(--preto);
+  border-radius: 6px;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 8px 0;
+  background: var(--branco);
+  color: var(--preto);
+}
+.trava .btn-liberar {
+  background: var(--amarelo);
+  color: var(--preto);
+  border: 2.5px solid var(--preto);
+  padding: 8px 18px;
+  font-family: 'Bangers', cursive;
+  font-size: 1.1em;
+  letter-spacing: 1.5px;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--preto);
+  -webkit-text-stroke: 0.5px var(--preto);
+}
+.trava .btn-liberar:hover { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--preto); }
+.trava-erro { color: var(--amarelo); font-size: 0.85em; font-weight: 700; margin-top: 8px; display: none; }
+.trava-erro.visivel { display: block; }
+
+/* ===== FINAL ===== */
+.final {
+  display: none;
+  background: var(--vermelho);
+  color: var(--branco);
+  border: 4px solid var(--preto);
+  border-radius: 14px;
+  padding: 26px 20px;
+  margin-top: 22px;
+  text-align: center;
+  box-shadow: 8px 8px 0 var(--preto);
+}
+.final.visivel { display: block; }
+.final h2 {
+  font-family: 'Bangers', cursive;
+  font-size: 2em;
+  color: var(--amarelo);
+  letter-spacing: 2px;
+  -webkit-text-stroke: 1.5px var(--preto);
+  text-shadow: 3px 3px 0 var(--preto);
+  margin-bottom: 10px;
+  transform: rotate(-1deg);
+}
+
+.toast {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  background: var(--preto);
+  color: var(--amarelo);
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 2.5px solid var(--amarelo);
+  font-family: 'Bungee', cursive;
+  font-size: 0.85em;
+  letter-spacing: 1px;
+  box-shadow: 4px 4px 0 var(--vermelho);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s;
+  pointer-events: none;
+  z-index: 1000;
+}
+.toast.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 600px) {
+  body { padding: 10px; }
+  .questao { padding: 14px; }
+  .codigo-valor { font-size: 1.4em; letter-spacing: 2px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Barra de resultado fixa (vermelha) -->
+<div class="barra-resultado" id="barraResultado">
+  <div class="br-acertos" id="brAcertos">— de 25</div>
+  <div class="br-codigo" id="brCodigo">---</div>
+</div>
+
+<!-- CAPA AZUL ESCURO -->
+<div class="capa">
+  <div class="capa-conteudo">
+    <h1>FINAL BATTLE!</h1>
+    <div class="sub">SIMULADO · 25 QUESTÕES · NÍVEL HERÓI</div>
+    <div class="narrador">⚔️ A grande prova final, jovem aprendiz!</div>
+  </div>
+</div>
+<!-- BARRA VERMELHA -->
+<div class="barra-vermelha">⚡ TUDO O QUE PODE CAIR NA RECUPERAÇÃO ⚡</div>
+
+<!-- Painel info -->
+<div class="painel-info">
+  <div>💾 Último salvamento: <b id="ultimo-save">—</b></div>
+  <div class="save-buttons">
+    <button class="btn-save" onclick="exportarProgresso()">📥 Exportar</button>
+    <button class="btn-save import" onclick="document.getElementById('input-importar').click()">📤 Importar</button>
+    <button class="btn-save zerar" onclick="zerarProgresso()">🗑️ Zerar</button>
+    <input type="file" id="input-importar" accept=".json" style="display:none" onchange="importarProgresso(event)">
+  </div>
+</div>
+
+<!-- Instruções -->
+<div class="instrucoes">
+  <h3>📌 INSTRUÇÕES DA MISSÃO</h3>
+  <ul>
+    <li><b>25 questões</b> originais simulando o estilo das suas duas provas mensais.</li>
+    <li>Faça <b>como uma prova real</b>: sem consultar o resumo nem o livro.</li>
+    <li>Você precisa responder <b>TODAS</b> antes de poder enviar.</li>
+    <li>Ao enviar, recebe um <b>código de liberação</b> (SIM-XX-XX) para destravar o gabarito.</li>
+    <li><b>Meta: 18 acertos ou mais</b> = você está pronta para a recuperação! 🎯</li>
+  </ul>
+</div>
+
+<!-- Progresso -->
+<div class="progresso">
+  <div class="progresso-info">Progresso: <span id="prog-texto">0 de 25</span></div>
+  <div class="progresso-bar"><div class="progresso-fill" id="prog-fill"></div></div>
+</div>
+
+<!-- ===== QUESTÕES ===== -->
+<div id="questoes-area">
+
+<!-- Q1 — Simple Present afirmativa -->
+<div class="questao" data-q="1" data-tema="present">
+  <div class="q-header"><div class="q-numero">Q1</div><div class="q-tema">SIMPLE PRESENT</div></div>
+  <div class="q-texto">My friend Edward _____ paintings and sculptures.</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q1" value="a"><span class="alt-letra">A</span><span>like</span></label>
+    <label class="alt"><input type="radio" name="q1" value="b"><span class="alt-letra">B</span><span>likes</span></label>
+    <label class="alt"><input type="radio" name="q1" value="c"><span class="alt-letra">C</span><span>liked</span></label>
+    <label class="alt"><input type="radio" name="q1" value="d"><span class="alt-letra">D</span><span>liking</span></label>
+  </div>
+  <div class="explicacao" data-correta="b">
+    <b>Resposta: B (likes).</b> Edward = he → no Simple Present, he/she/it leva <b>S</b> → <b>likes</b>.
+  </div>
+</div>
+
+<!-- Q2 — Simple Present pergunta -->
+<div class="questao" data-q="2" data-tema="present">
+  <div class="q-header"><div class="q-numero">Q2</div><div class="q-tema">SIMPLE PRESENT — DO/DOES</div></div>
+  <div class="q-texto">_____ your sister play tennis on Sundays?</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q2" value="a"><span class="alt-letra">A</span><span>Do</span></label>
+    <label class="alt"><input type="radio" name="q2" value="b"><span class="alt-letra">B</span><span>Does</span></label>
+    <label class="alt"><input type="radio" name="q2" value="c"><span class="alt-letra">C</span><span>Did</span></label>
+    <label class="alt"><input type="radio" name="q2" value="d"><span class="alt-letra">D</span><span>Is</span></label>
+  </div>
+  <div class="explicacao" data-correta="b">
+    <b>Resposta: B (Does).</b> Sister = she → pergunta no Simple Present usa <b>DOES</b> + verbo BASE (play, sem S!).
+  </div>
+</div>
+
+<!-- Q3 — Yes/No short answer -->
+<div class="questao" data-q="3" data-tema="present">
+  <div class="q-header"><div class="q-numero">Q3</div><div class="q-tema">SHORT ANSWERS</div></div>
+  <div class="q-texto">"Do you like to study at Coração Feliz?" → Resposta afirmativa correta:</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q3" value="a"><span class="alt-letra">A</span><span>Yes, I am.</span></label>
+    <label class="alt"><input type="radio" name="q3" value="b"><span class="alt-letra">B</span><span>Yes, I do.</span></label>
+    <label class="alt"><input type="radio" name="q3" value="c"><span class="alt-letra">C</span><span>Yes, I like.</span></label>
+    <label class="alt"><input type="radio" name="q3" value="d"><span class="alt-letra">D</span><span>Yes, I'm doing.</span></label>
+  </div>
+  <div class="explicacao" data-correta="b">
+    <b>Resposta: B (Yes, I do).</b> Pergunta com <b>DO</b> → resposta com <b>do</b>. Nunca misture com am/is/are.
+  </div>
+</div>
+
+<!-- Q4 — Present Continuous estrutura -->
+<div class="questao" data-q="4" data-tema="continuous">
+  <div class="q-header"><div class="q-numero">Q4</div><div class="q-tema">PRESENT CONTINUOUS</div></div>
+  <div class="q-texto">Look! She _____ the piano right now.</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q4" value="a"><span class="alt-letra">A</span><span>play</span></label>
+    <label class="alt"><input type="radio" name="q4" value="b"><span class="alt-letra">B</span><span>plays</span></label>
+    <label class="alt"><input type="radio" name="q4" value="c"><span class="alt-letra">C</span><span>is playing</span></label>
+    <label class="alt"><input type="radio" name="q4" value="d"><span class="alt-letra">D</span><span>are playing</span></label>
+  </div>
+  <div class="explicacao" data-correta="c">
+    <b>Resposta: C (is playing).</b> "Right now" → ação acontecendo agora → Present Continuous. She → <b>IS</b> + play+ing.
+  </div>
+</div>
+
+<!-- Q5 — Identificar Present Continuous -->
+<div class="questao" data-q="5" data-tema="continuous">
+  <div class="q-header"><div class="q-numero">Q5</div><div class="q-tema">IDENTIFICAR PRESENT CONTINUOUS</div></div>
+  <div class="q-texto">Marque a frase que está no <b>Present Continuous</b>:</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q5" value="a"><span class="alt-letra">A</span><span>I didn't see him there.</span></label>
+    <label class="alt"><input type="radio" name="q5" value="b"><span class="alt-letra">B</span><span>She is playing very well.</span></label>
+    <label class="alt"><input type="radio" name="q5" value="c"><span class="alt-letra">C</span><span>I don't know who he is.</span></label>
+    <label class="alt"><input type="radio" name="q5" value="d"><span class="alt-letra">D</span><span>We were doing pushups earlier.</span></label>
+  </div>
+  <div class="explicacao" data-correta="b">
+    <b>Resposta: B (She is playing very well).</b> Present Continuous = am/is/are + verbo-ing. A) é Simple Past; C) é Simple Present; D) é Past Continuous.
+  </div>
+</div>
+
+<!-- Q6 — Frase correta no Present Continuous -->
+<div class="questao" data-q="6" data-tema="continuous">
+  <div class="q-header"><div class="q-numero">Q6</div><div class="q-tema">FORMA CORRETA</div></div>
+  <div class="q-texto">Marque a frase <b>correta</b> no Present Continuous:</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q6" value="a"><span class="alt-letra">A</span><span>She play soccer now.</span></label>
+    <label class="alt"><input type="radio" name="q6" value="b"><span class="alt-letra">B</span><span>She is playing soccer now.</span></label>
+    <label class="alt"><input type="radio" name="q6" value="c"><span class="alt-letra">C</span><span>She plays soccer now.</span></label>
+    <label class="alt"><input type="radio" name="q6" value="d"><span class="alt-letra">D</span><span>She playing soccer now.</span></label>
+  </div>
+  <div class="explicacao" data-correta="b">
+    <b>Resposta: B.</b> Present Continuous precisa de TRÊS partes: sujeito + <b>am/is/are</b> + verbo<b>-ing</b>. Faltando qualquer uma delas, está errado!
+  </div>
+</div>
+
+<!-- Q7 — Comparativo curto -->
+<div class="questao" data-q="7" data-tema="compare">
+  <div class="q-header"><div class="q-numero">Q7</div><div class="q-tema">COMPARATIVO CURTO</div></div>
+  <div class="q-texto">Sarah's hair is _____ Karen's.</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q7" value="a"><span class="alt-letra">A</span><span>more long than</span></label>
+    <label class="alt"><input type="radio" name="q7" value="b"><span class="alt-letra">B</span><span>longer than</span></label>
+    <label class="alt"><input type="radio" name="q7" value="c"><span class="alt-letra">C</span><span>the longest</span></label>
+    <label class="alt"><input type="radio" name="q7" value="d"><span class="alt-letra">D</span><span>longest than</span></label>
+  </div>
+  <div class="explicacao" data-correta="b">
+    <b>Resposta: B (longer than).</b> "Long" tem 1 sílaba (curto) → comparativo é <b>longer than</b>. NUNCA "more long".
+  </div>
+</div>
+
+<!-- Q8 — Comparativo curto -->
+<div class="questao" data-q="8" data-tema="compare">
+  <div class="q-header"><div class="q-numero">Q8</div><div class="q-tema">COMPARATIVO CURTO</div></div>
+  <div class="q-texto">Frank is _____ Lisa.</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q8" value="a"><span class="alt-letra">A</span><span>shorter than</span></label>
+    <label class="alt"><input type="radio" name="q8" value="b"><span class="alt-letra">B</span><span>more short than</span></label>
+    <label class="alt"><input type="radio" name="q8" value="c"><span class="alt-letra">C</span><span>shortest than</span></label>
+    <label class="alt"><input type="radio" name="q8" value="d"><span class="alt-letra">D</span><span>the shortest</span></label>
+  </div>
+  <div class="explicacao" data-correta="a">
+    <b>Resposta: A (shorter than).</b> Short = curto → <b>shorter than</b>.
+  </div>
+</div>
+
+<!-- Q9 — Superlativo longo -->
+<div class="questao" data-q="9" data-tema="compare">
+  <div class="q-header"><div class="q-numero">Q9</div><div class="q-tema">SUPERLATIVO</div></div>
+  <div class="q-texto">Math is _____ subject in school. (na minha opinião!)</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q9" value="a"><span class="alt-letra">A</span><span>more difficult</span></label>
+    <label class="alt"><input type="radio" name="q9" value="b"><span class="alt-letra">B</span><span>most difficult</span></label>
+    <label class="alt"><input type="radio" name="q9" value="c"><span class="alt-letra">C</span><span>the most difficult</span></label>
+    <label class="alt"><input type="radio" name="q9" value="d"><span class="alt-letra">D</span><span>the difficultest</span></label>
+  </div>
+  <div class="explicacao" data-correta="c">
+    <b>Resposta: C (the most difficult).</b> "Difficult" é longo → superlativo = <b>the most difficult</b>. Nunca esqueça do "the"!
+  </div>
+</div>
+
+<!-- Q10 — Soma comparativos/superlativos -->
+<div class="questao" data-q="10" data-tema="compare">
+  <div class="q-header"><div class="q-numero">Q10</div><div class="q-tema">REGRAS — SOMA</div></div>
+  <div class="q-texto">Sobre comparativos e superlativos, marque a <b>soma</b> das afirmações <b>CORRETAS</b>:
+  <br>(01) Comparativos são seguidos por 'than'.
+  <br>(02) Usamos 'the' antes de superlativos.
+  <br>(04) "Bigger than" está na forma comparativa.
+  <br>(08) "The tallest" está na forma comparativa.
+  <br>(16) "More tall" is the correct comparative of tall.</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q10" value="a"><span class="alt-letra">A</span><span>03 (01 + 02)</span></label>
+    <label class="alt"><input type="radio" name="q10" value="b"><span class="alt-letra">B</span><span>07 (01 + 02 + 04)</span></label>
+    <label class="alt"><input type="radio" name="q10" value="c"><span class="alt-letra">C</span><span>15 (01+02+04+08)</span></label>
+    <label class="alt"><input type="radio" name="q10" value="d"><span class="alt-letra">D</span><span>23 (01+02+04+16)</span></label>
+  </div>
+  <div class="explicacao" data-correta="b">
+    <b>Resposta: B (07 = 01+02+04).</b> Corretas: 01, 02 e 04. ❌ 08 = "The tallest" é SUPERLATIVO, não comparativo. ❌ 16 = "More tall" está ERRADO; é "taller".
+  </div>
+</div>
+
+<!-- Q11 — Was/Were combinados -->
+<div class="questao" data-q="11" data-tema="wasere">
+  <div class="q-header"><div class="q-numero">Q11</div><div class="q-tema">WAS / WERE</div></div>
+  <div class="q-texto">They _____ at school yesterday because it _____ Sunday.</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q11" value="a"><span class="alt-letra">A</span><span>weren't / was</span></label>
+    <label class="alt"><input type="radio" name="q11" value="b"><span class="alt-letra">B</span><span>wasn't / were</span></label>
+    <label class="alt"><input type="radio" name="q11" value="c"><span class="alt-letra">C</span><span>weren't / were</span></label>
+    <label class="alt"><input type="radio" name="q11" value="d"><span class="alt-letra">D</span><span>wasn't / was</span></label>
+  </div>
+  <div class="explicacao" data-correta="a">
+    <b>Resposta: A (weren't / was).</b> They = plural → <b>weren't</b>. It (Sunday) = singular → <b>was</b>.
+  </div>
+</div>
+
+<!-- Q12 — Pergunta com You + were -->
+<div class="questao" data-q="12" data-tema="wasere">
+  <div class="q-header"><div class="q-numero">Q12</div><div class="q-tema">WAS / WERE — PERGUNTA</div></div>
+  <div class="q-texto">_____ you at home last night?</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q12" value="a"><span class="alt-letra">A</span><span>Was</span></label>
+    <label class="alt"><input type="radio" name="q12" value="b"><span class="alt-letra">B</span><span>Were</span></label>
+    <label class="alt"><input type="radio" name="q12" value="c"><span class="alt-letra">C</span><span>Did</span></label>
+    <label class="alt"><input type="radio" name="q12" value="d"><span class="alt-letra">D</span><span>Are</span></label>
+  </div>
+  <div class="explicacao" data-correta="b">
+    <b>Resposta: B (Were).</b> <b>YOU</b> sempre usa <b>WERE</b>, mesmo quando se refere a 1 só pessoa. "Was you" está SEMPRE errado!
+  </div>
+</div>
+
+<!-- Q13 — There was / There were -->
+<div class="questao" data-q="13" data-tema="wasere">
+  <div class="q-header"><div class="q-numero">Q13</div><div class="q-tema">THERE WAS / THERE WERE</div></div>
+  <div class="q-texto">In Peter's old living room: There _____ a beautiful sofa and there _____ four lamps.</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q13" value="a"><span class="alt-letra">A</span><span>was / was</span></label>
+    <label class="alt"><input type="radio" name="q13" value="b"><span class="alt-letra">B</span><span>were / were</span></label>
+    <label class="alt"><input type="radio" name="q13" value="c"><span class="alt-letra">C</span><span>was / were</span></label>
+    <label class="alt"><input type="radio" name="q13" value="d"><span class="alt-letra">D</span><span>were / was</span></label>
+  </div>
+  <div class="explicacao" data-correta="c">
+    <b>Resposta: C (was / were).</b> 1 sofa = singular → <b>was</b>. 4 lamps = plural → <b>were</b>. É só olhar o que vem depois!
+  </div>
+</div>
+
+<!-- Q14 — Simple Past regular -->
+<div class="questao" data-q="14" data-tema="past">
+  <div class="q-header"><div class="q-numero">Q14</div><div class="q-tema">SIMPLE PAST — REGULAR</div></div>
+  <div class="q-texto">I _____ in Rome last week and stayed at a beautiful hotel.</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q14" value="a"><span class="alt-letra">A</span><span>arrive</span></label>
+    <label class="alt"><input type="radio" name="q14" value="b"><span class="alt-letra">B</span><span>arrived</span></label>
+    <label class="alt"><input type="radio" name="q14" value="c"><span class="alt-letra">C</span><span>arrives</span></label>
+    <label class="alt"><input type="radio" name="q14" value="d"><span class="alt-letra">D</span><span>arriveed</span></label>
+  </div>
+  <div class="explicacao" data-correta="b">
+    <b>Resposta: B (arrived).</b> "Last week" = passado. Arrive termina em E → só adiciona D → <b>arrived</b>.
+  </div>
+</div>
+
+<!-- Q15 — Simple Past irregular HAVE -->
+<div class="questao" data-q="15" data-tema="past">
+  <div class="q-header"><div class="q-numero">Q15</div><div class="q-tema">SIMPLE PAST — IRREGULAR</div></div>
+  <div class="q-texto">This morning my parents and I woke up at 8:00 and _____ a great breakfast.</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q15" value="a"><span class="alt-letra">A</span><span>have</span></label>
+    <label class="alt"><input type="radio" name="q15" value="b"><span class="alt-letra">B</span><span>haved</span></label>
+    <label class="alt"><input type="radio" name="q15" value="c"><span class="alt-letra">C</span><span>had</span></label>
+    <label class="alt"><input type="radio" name="q15" value="d"><span class="alt-letra">D</span><span>has</span></label>
+  </div>
+  <div class="explicacao" data-correta="c">
+    <b>Resposta: C (had).</b> Have é irregular → passado é <b>had</b>. Cuidado: NÃO existe "haved"!
+  </div>
+</div>
+
+<!-- Q16 — Simple Past irregular SEE -->
+<div class="questao" data-q="16" data-tema="past">
+  <div class="q-header"><div class="q-numero">Q16</div><div class="q-tema">SIMPLE PAST — IRREGULAR</div></div>
+  <div class="q-texto">Afterwards, I walked a little and _____ many tourists in Rome.</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q16" value="a"><span class="alt-letra">A</span><span>see</span></label>
+    <label class="alt"><input type="radio" name="q16" value="b"><span class="alt-letra">B</span><span>seen</span></label>
+    <label class="alt"><input type="radio" name="q16" value="c"><span class="alt-letra">C</span><span>saw</span></label>
+    <label class="alt"><input type="radio" name="q16" value="d"><span class="alt-letra">D</span><span>seed</span></label>
+  </div>
+  <div class="explicacao" data-correta="c">
+    <b>Resposta: C (saw).</b> See é irregular → passado é <b>saw</b>.
+  </div>
+</div>
+
+<!-- Q17 — Simple Past negativa -->
+<div class="questao" data-q="17" data-tema="past">
+  <div class="q-header"><div class="q-numero">Q17</div><div class="q-tema">SIMPLE PAST — NEGATIVA</div></div>
+  <div class="q-texto">She _____ a cell phone until she was twelve.</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q17" value="a"><span class="alt-letra">A</span><span>doesn't have</span></label>
+    <label class="alt"><input type="radio" name="q17" value="b"><span class="alt-letra">B</span><span>didn't had</span></label>
+    <label class="alt"><input type="radio" name="q17" value="c"><span class="alt-letra">C</span><span>didn't have</span></label>
+    <label class="alt"><input type="radio" name="q17" value="d"><span class="alt-letra">D</span><span>wasn't have</span></label>
+  </div>
+  <div class="explicacao" data-correta="c">
+    <b>Resposta: C (didn't have).</b> Negativa do passado = <b>didn't</b> + verbo BASE. Cuidado: NÃO é "didn't had"!
+  </div>
+</div>
+
+<!-- Q18 — E-mail EXCEPT -->
+<div class="questao" data-q="18" data-tema="past">
+  <div class="q-header"><div class="q-numero">Q18</div><div class="q-tema">SIMPLE PAST — LEITURA</div></div>
+  <div class="q-texto">Read the e-mail. All the underlined verbs are in <b>Simple Past</b>, EXCEPT:</div>
+  <div class="q-box">
+    Hi Mary! How are you? I miss you so much! I <u>arrived</u> in Rome last week. This morning my parents and I <u>woke</u> up at 8:00 and <u>had</u> a great breakfast. I <u>walked</u> a little and <u>saw</u> many tourists. <u>Come</u> meet us! See you soon!
+  </div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q18" value="a"><span class="alt-letra">A</span><span>Arrived</span></label>
+    <label class="alt"><input type="radio" name="q18" value="b"><span class="alt-letra">B</span><span>Woke</span></label>
+    <label class="alt"><input type="radio" name="q18" value="c"><span class="alt-letra">C</span><span>Come</span></label>
+    <label class="alt"><input type="radio" name="q18" value="d"><span class="alt-letra">D</span><span>Had</span></label>
+  </div>
+  <div class="explicacao" data-correta="c">
+    <b>Resposta: C (Come).</b> "Come meet us" é IMPERATIVO (uma ordem/convite), não Simple Past! Os outros são todos passado: arrive→arrived, wake→woke, have→had.
+  </div>
+</div>
+
+<!-- Q19 — Past Continuous WHILE -->
+<div class="questao" data-q="19" data-tema="pcont">
+  <div class="q-header"><div class="q-numero">Q19</div><div class="q-tema">PAST CONTINUOUS</div></div>
+  <div class="q-texto">While my brother _____ for his phone, he broke a glass.</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q19" value="a"><span class="alt-letra">A</span><span>looked</span></label>
+    <label class="alt"><input type="radio" name="q19" value="b"><span class="alt-letra">B</span><span>was looking</span></label>
+    <label class="alt"><input type="radio" name="q19" value="c"><span class="alt-letra">C</span><span>were looking</span></label>
+    <label class="alt"><input type="radio" name="q19" value="d"><span class="alt-letra">D</span><span>looking</span></label>
+  </div>
+  <div class="explicacao" data-correta="b">
+    <b>Resposta: B (was looking).</b> "While" pede Past Continuous. My brother = ele (singular) → <b>was</b> + look<b>ing</b>.
+  </div>
+</div>
+
+<!-- Q20 — When/While -->
+<div class="questao" data-q="20" data-tema="pcont">
+  <div class="q-header"><div class="q-numero">Q20</div><div class="q-tema">WHEN / WHILE</div></div>
+  <div class="q-texto">The lights went out _____ we were watching the movie.</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q20" value="a"><span class="alt-letra">A</span><span>but</span></label>
+    <label class="alt"><input type="radio" name="q20" value="b"><span class="alt-letra">B</span><span>and</span></label>
+    <label class="alt"><input type="radio" name="q20" value="c"><span class="alt-letra">C</span><span>while</span></label>
+    <label class="alt"><input type="radio" name="q20" value="d"><span class="alt-letra">D</span><span>then</span></label>
+  </div>
+  <div class="explicacao" data-correta="c">
+    <b>Resposta: C (while).</b> "We were watching" = Past Continuous → combina com <b>while</b> (enquanto).
+  </div>
+</div>
+
+<!-- Q21 — Past Continuous identificar correto -->
+<div class="questao" data-q="21" data-tema="pcont">
+  <div class="q-header"><div class="q-numero">Q21</div><div class="q-tema">FORMA CORRETA</div></div>
+  <div class="q-texto">Marque a frase <b>correta</b>:</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q21" value="a"><span class="alt-letra">A</span><span>They was playing a game while she call.</span></label>
+    <label class="alt"><input type="radio" name="q21" value="b"><span class="alt-letra">B</span><span>They were eat popcorn when she called.</span></label>
+    <label class="alt"><input type="radio" name="q21" value="c"><span class="alt-letra">C</span><span>They were watching a movie when she called.</span></label>
+    <label class="alt"><input type="radio" name="q21" value="d"><span class="alt-letra">D</span><span>They were eating when she call.</span></label>
+  </div>
+  <div class="explicacao" data-correta="c">
+    <b>Resposta: C.</b> A) "they was" ❌ (é were); B) "were eat" ❌ (precisa ser eating); D) "she call" ❌ (precisa ser called).
+  </div>
+</div>
+
+<!-- Q22 — Past Continuous + WHEN -->
+<div class="questao" data-q="22" data-tema="pcont">
+  <div class="q-header"><div class="q-numero">Q22</div><div class="q-tema">PAST CONTINUOUS</div></div>
+  <div class="q-texto">We _____ on the beach when somebody stole our camera.</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q22" value="a"><span class="alt-letra">A</span><span>slept</span></label>
+    <label class="alt"><input type="radio" name="q22" value="b"><span class="alt-letra">B</span><span>was sleeping</span></label>
+    <label class="alt"><input type="radio" name="q22" value="c"><span class="alt-letra">C</span><span>were sleeping</span></label>
+    <label class="alt"><input type="radio" name="q22" value="d"><span class="alt-letra">D</span><span>are sleeping</span></label>
+  </div>
+  <div class="explicacao" data-correta="c">
+    <b>Resposta: C (were sleeping).</b> Estávamos dormindo (ação longa) quando algo aconteceu (ação curta). We → <b>were</b> + sleep<b>ing</b>.
+  </div>
+</div>
+
+<!-- Q23 — WH com Past Continuous -->
+<div class="questao" data-q="23" data-tema="wh">
+  <div class="q-header"><div class="q-numero">Q23</div><div class="q-tema">WH-QUESTION</div></div>
+  <div class="q-texto">_____ you talking during the class on Thursday?</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q23" value="a"><span class="alt-letra">A</span><span>Why did</span></label>
+    <label class="alt"><input type="radio" name="q23" value="b"><span class="alt-letra">B</span><span>Why was</span></label>
+    <label class="alt"><input type="radio" name="q23" value="c"><span class="alt-letra">C</span><span>Why were</span></label>
+    <label class="alt"><input type="radio" name="q23" value="d"><span class="alt-letra">D</span><span>Why are</span></label>
+  </div>
+  <div class="explicacao" data-correta="c">
+    <b>Resposta: C (Why were).</b> "Talking" = verbo+ing → Past Continuous. YOU sempre usa <b>WERE</b>!
+  </div>
+</div>
+
+<!-- Q24 — WH com Did -->
+<div class="questao" data-q="24" data-tema="wh">
+  <div class="q-header"><div class="q-numero">Q24</div><div class="q-tema">WH-QUESTION</div></div>
+  <div class="q-texto">_____ they finish the project?</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q24" value="a"><span class="alt-letra">A</span><span>When was</span></label>
+    <label class="alt"><input type="radio" name="q24" value="b"><span class="alt-letra">B</span><span>When did</span></label>
+    <label class="alt"><input type="radio" name="q24" value="c"><span class="alt-letra">C</span><span>When were</span></label>
+    <label class="alt"><input type="radio" name="q24" value="d"><span class="alt-letra">D</span><span>When does</span></label>
+  </div>
+  <div class="explicacao" data-correta="b">
+    <b>Resposta: B (When did).</b> "Finish" está na forma BASE → Simple Past → <b>DID</b>. Estrutura: WH + DID + sujeito + verbo BASE.
+  </div>
+</div>
+
+<!-- Q25 — Comic strip / tempo verbal -->
+<div class="questao" data-q="25" data-tema="past">
+  <div class="q-header"><div class="q-numero">Q25</div><div class="q-tema">IDENTIFICAR TEMPO VERBAL</div></div>
+  <div class="q-texto">Leia este trecho de uma história em quadrinhos:</div>
+  <div class="q-box">
+    "Once upon a time there <u>was</u> a house with a man, a dog and a cat. The man <u>was</u> thin. The cat <u>was</u> fat. Then the cat <u>ate</u> my breakfast and the dog <u>chewed</u> my slippers!"
+  </div>
+  <div class="q-texto">Qual é o tempo verbal principal usado?</div>
+  <div class="alternativas">
+    <label class="alt"><input type="radio" name="q25" value="a"><span class="alt-letra">A</span><span>Present Perfect</span></label>
+    <label class="alt"><input type="radio" name="q25" value="b"><span class="alt-letra">B</span><span>Simple Present</span></label>
+    <label class="alt"><input type="radio" name="q25" value="c"><span class="alt-letra">C</span><span>Past Perfect</span></label>
+    <label class="alt"><input type="radio" name="q25" value="d"><span class="alt-letra">D</span><span>Simple Past</span></label>
+  </div>
+  <div class="explicacao" data-correta="d">
+    <b>Resposta: D (Simple Past).</b> Todos os verbos estão no Simple Past: was (be), ate (eat), chewed (chew). É a Q8 da Prova 2!
+  </div>
+</div>
+
+</div>
+
+<!-- BOTÃO ENVIAR -->
+<button class="btn-enviar desabilitado" id="btnEnviar" onclick="tentarEnviar()">
+  ⚔️ ENVIAR SIMULADO
+</button>
+
+<!-- TELA DE RESULTADO -->
+<div class="resultado" id="resultado">
+  <h2>BATTLE COMPLETE!</h2>
+  <div class="placar">Você acertou <b id="resAcertos">0</b> de 25</div>
+  <div class="codigo-box">
+    <div class="codigo-label">🔑 CÓDIGO DE LIBERAÇÃO</div>
+    <div class="codigo-valor" id="resCodigo">---</div>
+    <div class="codigo-instrucao">Mostre este código para sua mãe digitar e liberar o gabarito!</div>
+  </div>
+
+  <div class="analise" id="analiseTema">
+    <h3>📊 DESEMPENHO POR TEMA</h3>
+    <div id="analiseLista"></div>
+  </div>
+</div>
+
+<!-- TRAVA DO GABARITO -->
+<div class="trava" id="trava" style="display:none;">
+  <div class="trava-titulo">🔒 GABARITO BLOQUEADO</div>
+  <p style="font-size:0.9em; margin-bottom: 6px;">Digite o código de liberação para destravar:</p>
+  <input type="text" id="inputCodigo" placeholder="SIM-XX-XX" maxlength="10">
+  <br>
+  <button class="btn-liberar" onclick="liberarGabarito()">🔓 LIBERAR</button>
+  <div class="trava-erro" id="travaErro">❌ Código incorreto. Tente de novo!</div>
+</div>
+
+<!-- MENSAGEM FINAL -->
+<div class="final" id="final">
+  <h2>YOU ARE READY! 🦸</h2>
+  <p>Revise as questões que errou e foque nos temas com menor desempenho. Boa sorte na recuperação! ⚡</p>
+</div>
+
+</div>
+
+<div class="toast" id="toast">💾 Saved!</div>
+
+<script>
+const STORAGE_KEY = 'ingles_simulado_v1';
+const TOTAL = 25;
+const TEMAS = {
+  present: 'Simple Present',
+  continuous: 'Present Continuous',
+  compare: 'Comparativos/Superlativos',
+  wasere: 'Was/Were + There',
+  past: 'Simple Past',
+  pcont: 'Past Continuous + When/While',
+  wh: 'WH-Questions'
+};
+let respostas = {};
+let enviado = false;
+let codigoLiberado = false;
+
+document.querySelectorAll('.alt input').forEach(input => {
+  input.addEventListener('change', function() {
+    if (enviado) return;
+    const q = this.name;
+    respostas[q] = this.value;
+    document.querySelectorAll(`input[name="${q}"]`).forEach(r => {
+      r.parentElement.classList.toggle('selecionada', r.checked);
+    });
+    atualizarProgresso();
+    salvar();
+  });
+});
+
+function atualizarProgresso() {
+  const total = Object.keys(respostas).length;
+  document.getElementById('prog-texto').textContent = total + ' de ' + TOTAL;
+  document.getElementById('prog-fill').style.width = (total / TOTAL * 100) + '%';
+  const btn = document.getElementById('btnEnviar');
+  if (total === TOTAL && !enviado) {
+    btn.classList.remove('desabilitado');
+    btn.classList.add('ativo');
+  } else if (!enviado) {
+    btn.classList.add('desabilitado');
+    btn.classList.remove('ativo');
+  }
+}
+
+function tentarEnviar() {
+  if (enviado) return;
+  if (Object.keys(respostas).length < TOTAL) {
+    alert('Você precisa responder TODAS as 25 questões antes de enviar!');
+    return;
+  }
+  if (!confirm('Tem certeza? Após enviar, você não poderá mais mudar as respostas.')) return;
+  enviar();
+}
+
+function enviar() {
+  enviado = true;
+  let acertos = 0;
+  const temasCount = {};
+  const temasAcertos = {};
+
+  document.querySelectorAll('.questao').forEach(q => {
+    const num = q.dataset.q;
+    const tema = q.dataset.tema;
+    const correta = q.querySelector('.explicacao').dataset.correta;
+    const escolhida = respostas['q' + num];
+
+    temasCount[tema] = (temasCount[tema] || 0) + 1;
+
+    if (escolhida === correta) {
+      acertos++;
+      temasAcertos[tema] = (temasAcertos[tema] || 0) + 1;
+    }
+
+    q.classList.add('bloqueada');
+    q.querySelectorAll('.alt').forEach(alt => {
+      const radio = alt.querySelector('input');
+      if (radio.value === correta) alt.classList.add('correta-marca');
+      else alt.classList.add('errada-marca');
+    });
+  });
+
+  // gerar código
+  const r1 = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+  const r2 = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+  const codigo = `SIM-${String(acertos).padStart(2,'0')}-${r1}${r2}`;
+
+  document.getElementById('resAcertos').textContent = acertos;
+  document.getElementById('resCodigo').textContent = codigo;
+  document.getElementById('resultado').classList.add('visivel');
+  document.getElementById('brAcertos').textContent = `${acertos}/${TOTAL}`;
+  document.getElementById('brCodigo').textContent = codigo;
+  document.getElementById('barraResultado').classList.add('visivel');
+  document.getElementById('btnEnviar').style.display = 'none';
+
+  // análise por tema
+  const analise = document.getElementById('analiseLista');
+  analise.innerHTML = '';
+  Object.keys(TEMAS).forEach(t => {
+    if (temasCount[t]) {
+      const acert = temasAcertos[t] || 0;
+      const pct = Math.round(acert / temasCount[t] * 100);
+      const classe = pct >= 75 ? 'bom' : pct >= 50 ? 'medio' : 'fraco';
+      analise.innerHTML += `
+        <div class="analise-item">
+          <span class="analise-tema">${TEMAS[t]}</span>
+          <span class="analise-pct ${classe}">${acert}/${temasCount[t]} (${pct}%)</span>
+        </div>`;
+    }
+  });
+
+  document.getElementById('trava').style.display = 'block';
+
+  salvar(true, codigo, acertos, {temasCount, temasAcertos});
+
+  setTimeout(() => {
+    document.getElementById('resultado').scrollIntoView({behavior:'smooth', block:'start'});
+  }, 300);
+}
+
+function liberarGabarito() {
+  const input = document.getElementById('inputCodigo').value.trim().toUpperCase();
+  const correto = document.getElementById('resCodigo').textContent;
+  if (input === correto) {
+    codigoLiberado = true;
+    document.querySelectorAll('.explicacao').forEach(e => e.classList.add('visivel'));
+    document.getElementById('trava').style.display = 'none';
+    document.getElementById('final').classList.add('visivel');
+    salvar(true, correto);
+    mostrarToast('🔓 Liberado!');
+    setTimeout(() => {
+      document.querySelector('.questao').scrollIntoView({behavior:'smooth'});
+    }, 300);
+  } else {
+    document.getElementById('travaErro').classList.add('visivel');
+    setTimeout(() => document.getElementById('travaErro').classList.remove('visivel'), 3000);
+  }
+}
+
+function salvar(jaEnviado=null, cod=null, acert=null, analise=null) {
+  const estado = {
+    respostas: respostas,
+    enviado: jaEnviado === null ? enviado : jaEnviado,
+    codigoLiberado: codigoLiberado,
+    codigo: cod || (document.getElementById('resCodigo')?.textContent || null),
+    acertos: acert,
+    analise: analise,
+    timestamp: new Date().toISOString()
+  };
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(estado));
+    atualizarUltimoSave();
+    mostrarToast('💾 Saved!');
+  } catch(e) { console.error(e); }
+}
+
+function carregar() {
+  try {
+    const dado = localStorage.getItem(STORAGE_KEY);
+    if (!dado) return;
+    const estado = JSON.parse(dado);
+
+    respostas = estado.respostas || {};
+    Object.keys(respostas).forEach(q => {
+      const input = document.querySelector(`input[name="${q}"][value="${respostas[q]}"]`);
+      if (input) {
+        input.checked = true;
+        input.parentElement.classList.add('selecionada');
+      }
+    });
+    atualizarProgresso();
+
+    if (estado.enviado) {
+      enviado = true;
+      let acertos = estado.acertos || 0;
+      const temasCount = (estado.analise && estado.analise.temasCount) || {};
+      const temasAcertos = (estado.analise && estado.analise.temasAcertos) || {};
+
+      if (!estado.acertos) {
+        document.querySelectorAll('.questao').forEach(q => {
+          const num = q.dataset.q;
+          const correta = q.querySelector('.explicacao').dataset.correta;
+          if (respostas['q'+num] === correta) acertos++;
+        });
+      }
+
+      document.querySelectorAll('.questao').forEach(q => {
+        const correta = q.querySelector('.explicacao').dataset.correta;
+        q.classList.add('bloqueada');
+        q.querySelectorAll('.alt').forEach(alt => {
+          const radio = alt.querySelector('input');
+          if (radio.value === correta) alt.classList.add('correta-marca');
+          else alt.classList.add('errada-marca');
+        });
+      });
+      document.getElementById('resAcertos').textContent = acertos;
+      document.getElementById('resCodigo').textContent = estado.codigo || '---';
+      document.getElementById('resultado').classList.add('visivel');
+      document.getElementById('brAcertos').textContent = `${acertos}/${TOTAL}`;
+      document.getElementById('brCodigo').textContent = estado.codigo || '---';
+      document.getElementById('barraResultado').classList.add('visivel');
+      document.getElementById('btnEnviar').style.display = 'none';
+
+      // restaurar análise
+      const analiseLista = document.getElementById('analiseLista');
+      analiseLista.innerHTML = '';
+      Object.keys(TEMAS).forEach(t => {
+        if (temasCount[t]) {
+          const acert = temasAcertos[t] || 0;
+          const pct = Math.round(acert / temasCount[t] * 100);
+          const classe = pct >= 75 ? 'bom' : pct >= 50 ? 'medio' : 'fraco';
+          analiseLista.innerHTML += `
+            <div class="analise-item">
+              <span class="analise-tema">${TEMAS[t]}</span>
+              <span class="analise-pct ${classe}">${acert}/${temasCount[t]} (${pct}%)</span>
+            </div>`;
+        }
+      });
+
+      if (estado.codigoLiberado) {
+        codigoLiberado = true;
+        document.querySelectorAll('.explicacao').forEach(e => e.classList.add('visivel'));
+        document.getElementById('final').classList.add('visivel');
+      } else {
+        document.getElementById('trava').style.display = 'block';
+      }
+    }
+    atualizarUltimoSave();
+  } catch(e) { console.error(e); }
+}
+
+function atualizarUltimoSave() {
+  try {
+    const dado = localStorage.getItem(STORAGE_KEY);
+    if (!dado) return;
+    const estado = JSON.parse(dado);
+    if (estado.timestamp) {
+      const d = new Date(estado.timestamp);
+      const data = d.toLocaleDateString('pt-BR');
+      const hora = d.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+      document.getElementById('ultimo-save').textContent = data + ' às ' + hora;
+    }
+  } catch(e) {}
+}
+
+function exportarProgresso() {
+  const dado = localStorage.getItem(STORAGE_KEY);
+  if (!dado) { alert('Ainda não há progresso para exportar.'); return; }
+  const blob = new Blob([dado], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'ingles_simulado_progresso_' + new Date().toISOString().split('T')[0] + '.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  mostrarToast('📥 Exported!');
+}
+
+function importarProgresso(event) {
+  const arquivo = event.target.files[0];
+  if (!arquivo) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      JSON.parse(e.target.result);
+      localStorage.setItem(STORAGE_KEY, e.target.result);
+      location.reload();
+    } catch(err) { alert('Arquivo inválido.'); }
+  };
+  reader.readAsText(arquivo);
+  event.target.value = '';
+}
+
+function zerarProgresso() {
+  if (!confirm('Apagar TODO o progresso do Simulado? Não dá pra desfazer!')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
+function mostrarToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('visible');
+  setTimeout(() => t.classList.remove('visible'), 2000);
+}
+
+document.addEventListener('DOMContentLoaded', carregar);
+</script>
+</body>
+</html>

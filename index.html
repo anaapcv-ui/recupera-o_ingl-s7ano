@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💥 English Heroes — Kit de Recuperação 7º Ano</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #1a0033 0%, #0d001a 50%, #001a2e 100%);
+    color: #e8e8f0;
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.5;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; }
+
+  /* CAPA */
+  .capa {
+    background: linear-gradient(135deg, #4a148c 0%, #1a237e 50%, #006064 100%);
+    border: 3px solid #ba68c8;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(186, 104, 200, 0.4);
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+  }
+  .capa::before {
+    content: "";
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    animation: stars 20s linear infinite;
+  }
+  @keyframes stars {
+    from { transform: translate(0,0); }
+    to { transform: translate(-30px,-30px); }
+  }
+  .capa h1 {
+    font-size: 2.4em;
+    color: #fff;
+    text-shadow: 0 0 15px #ba68c8, 0 0 30px #ba68c8;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .capa .sub {
+    color: #e1bee7;
+    font-size: 1.15em;
+    position: relative;
+    margin-bottom: 15px;
+  }
+  .capa .narr {
+    color: #fff59d;
+    font-size: 1em;
+    font-style: italic;
+    position: relative;
+    border-top: 1px dashed #ba68c8;
+    padding-top: 12px;
+    margin-top: 12px;
+  }
+
+  /* INTRO */
+  .intro {
+    background: rgba(26, 0, 51, 0.7);
+    border: 2px solid #5c6bc0;
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+    color: #e8e8f0;
+    backdrop-filter: blur(10px);
+  }
+  .intro h2 {
+    color: #9fa8da;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+  }
+  .intro p { margin-bottom: 8px; }
+  .intro b { color: #ffd54f; }
+
+  /* GRID DE MATERIAIS */
+  .materiais {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 30px;
+  }
+
+  .card-material {
+    background: rgba(26, 0, 51, 0.7);
+    border: 2.5px solid;
+    border-radius: 15px;
+    padding: 22px 25px;
+    text-decoration: none;
+    color: #e8e8f0;
+    display: block;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+  .card-material:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(186, 104, 200, 0.5);
+  }
+  .card-material::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.6s;
+  }
+  .card-material:hover::before { left: 100%; }
+
+  .card-1 { border-color: #ba68c8; }
+  .card-1 .card-titulo { color: #ce93d8; }
+  .card-1:hover { border-color: #f3e5f5; }
+
+  .card-2 { border-color: #4fc3f7; }
+  .card-2 .card-titulo { color: #81d4fa; }
+  .card-2:hover { border-color: #b3e5fc; }
+
+  .card-3 { border-color: #ec407a; }
+  .card-3 .card-titulo { color: #f48fb1; }
+  .card-3:hover { border-color: #fce4ec; }
+
+  .card-cabecalho {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .card-icone {
+    font-size: 2.5em;
+    flex-shrink: 0;
+  }
+  .card-titulo {
+    font-size: 1.4em;
+    font-weight: 900;
+    margin: 0;
+    flex: 1;
+    min-width: 200px;
+  }
+  .card-etiqueta {
+    background: rgba(255, 213, 79, 0.2);
+    color: #ffd54f;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    border: 1px solid #ffd54f;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .card-descricao {
+    color: #e1bee7;
+    font-size: 1em;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  .card-info {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    font-size: 0.9em;
+    color: #b39ddb;
+  }
+  .card-info span {
+    background: rgba(0,0,0,0.3);
+    padding: 4px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(124, 137, 203, 0.4);
+  }
+
+  .card-acessar {
+    margin-top: 15px;
+    color: #fff;
+    font-weight: 700;
+    text-align: right;
+    font-size: 1em;
+  }
+  .card-acessar::after {
+    content: " →";
+    margin-left: 4px;
+    transition: margin 0.3s;
+  }
+  .card-material:hover .card-acessar::after {
+    margin-left: 12px;
+  }
+
+  /* CRONOGRAMA */
+  .cronograma {
+    background: rgba(26, 0, 51, 0.7);
+    border: 2px solid #66bb6a;
+    border-radius: 15px;
+    padding: 22px 25px;
+    margin-bottom: 25px;
+    backdrop-filter: blur(10px);
+  }
+  .cronograma h2 {
+    color: #a5d6a7;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #66bb6a;
+    padding-bottom: 8px;
+  }
+  .dia {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    border-left: 4px solid #66bb6a;
+  }
+  .dia-titulo {
+    color: #aed581;
+    font-weight: 900;
+    font-size: 1.1em;
+    margin-bottom: 6px;
+  }
+  .dia-conteudo {
+    color: #e8e8f0;
+    font-size: 0.95em;
+  }
+  .dia-conteudo b { color: #ffd54f; }
+
+  /* AVISO */
+  .aviso {
+    background: rgba(249, 168, 37, 0.15);
+    border: 1.5px dashed #ffd54f;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 25px;
+    color: #fff9c4;
+    font-size: 0.95em;
+  }
+  .aviso b { color: #ffd54f; }
+
+  /* DICA PARA A MÃE */
+  .dica-mae {
+    background: rgba(236, 64, 122, 0.12);
+    border: 1.5px solid #ec407a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 25px;
+    color: #fce4ec;
+  }
+  .dica-mae h2 {
+    color: #f48fb1;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  .dica-mae p { margin-bottom: 8px; font-size: 0.95em; }
+  .dica-mae b { color: #ffd54f; }
+  .dica-mae .codigo-ex {
+    background: rgba(0,0,0,0.4);
+    color: #ffd54f;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-weight: 700;
+    border: 1px solid #ffd54f;
+  }
+
+  /* RODAPÉ */
+  .rodape {
+    text-align: center;
+    color: #ba68c8;
+    font-style: italic;
+    padding: 20px;
+    border-top: 1px dashed #ba68c8;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .capa h1 { font-size: 1.6em; }
+    .card-titulo { font-size: 1.15em; }
+    .card-icone { font-size: 2em; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- CAPA -->
+  <div class="capa">
+    <h1>💥 ENGLISH HEROES ⚡</h1>
+    <div class="sub">Kit de Recuperação — 7º Ano · 1º Trimestre</div>
+    <div class="narr">Bem-vindo, jovem aprendiz! Aqui está sua missão para arrasar na recuperação de inglês. Tudo o que caiu nas duas provas mensais está coberto. Vamos lá! 🦸</div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <h2>📜 Como funciona</h2>
+    <p>Este é um <b>kit de estudos</b> focado na <b>recuperação de Inglês do 7º ano</b>. Cobre 100% do conteúdo das duas provas mensais (Mensal 1 + Mensal 2): presentes, comparativos/superlativos, passados e WH-questions.</p>
+    <p>São <b>3 materiais</b> que se complementam: 1️⃣ aprenda e pratique com o <b>Resumo com Fixação</b>, depois 2️⃣ teste com o <b>Quiz</b>, e por fim 3️⃣ encare o <b>Simulado</b>.</p>
+    <p>Todos os materiais <b>salvam o progresso automaticamente</b> no navegador. Pode fechar e voltar depois — continua de onde parou.</p>
+  </div>
+
+  <!-- AVISO -->
+  <div class="aviso">
+    💾 <b>Sobre o salvamento:</b> o progresso fica salvo no <b>navegador específico</b> que você está usando (Chrome do celular ≠ Chrome do computador). Para mover o progresso entre dispositivos, use os botões "📥 Exportar" e "📤 Importar" dentro de cada material.
+  </div>
+
+  <!-- MATERIAIS -->
+  <div class="materiais">
+
+    <a href="ingles_resumo_fixacao.html" class="card-material card-1">
+      <div class="card-cabecalho">
+        <div class="card-icone">📚</div>
+        <div class="card-titulo">Resumo com Fixação (Comic Book)</div>
+        <div class="card-etiqueta">⭐ COMECE AQUI</div>
+      </div>
+      <div class="card-descricao">
+        6 ISSUES (capítulos) cobrindo Simple Present, Present Continuous, Comparativos/Superlativos, Was/Were, Simple Past, Past Continuous, When/While e WH-questions. Cada Issue tem regra explicada, exemplos com áudio em inglês 🔊 e Practice Time com 4 a 5 frases para completar. Inclui lista de 30 verbos irregulares e glossário completo.
+      </div>
+      <div class="card-info">
+        <span>⏱️ 60-80 min</span>
+        <span>🎯 6 Issues</span>
+        <span>🔊 Áudio em inglês</span>
+        <span>📝 ~25 práticas</span>
+      </div>
+      <div class="card-acessar">Iniciar a missão</div>
+    </a>
+
+    <a href="ingles_quiz_interativo.html" class="card-material card-2">
+      <div class="card-cabecalho">
+        <div class="card-icone">🎯</div>
+        <div class="card-titulo">Quiz Interativo</div>
+        <div class="card-etiqueta">⚡ FIXAÇÃO</div>
+      </div>
+      <div class="card-descricao">
+        15 questões de múltipla escolha cobrindo todos os 6 grandes temas. Tem barra de progresso, código de liberação do gabarito (ENG-XX-XX) e gabarito comentado com explicação de cada resposta. Ideal para fixar antes do simulado.
+      </div>
+      <div class="card-info">
+        <span>⏱️ 20-30 min</span>
+        <span>📋 15 questões</span>
+        <span>🔑 Código de liberação</span>
+        <span>📖 Gabarito comentado</span>
+      </div>
+      <div class="card-acessar">Testar conhecimento</div>
+    </a>
+
+    <a href="ingles_simulado_interativo.html" class="card-material card-3">
+      <div class="card-cabecalho">
+        <div class="card-icone">🏆</div>
+        <div class="card-titulo">Simulado Interativo</div>
+        <div class="card-etiqueta">⚔️ DUELO FINAL</div>
+      </div>
+      <div class="card-descricao">
+        25 questões originais espelhando o estilo das provas mensais (múltipla escolha, completar lacunas, soma de afirmativas, identificar EXCEPT, ler e-mail/comic strip). No final, você vê seu desempenho dividido por tema — assim sabe exatamente onde focar.
+      </div>
+      <div class="card-info">
+        <span>⏱️ 45-60 min</span>
+        <span>📋 25 questões</span>
+        <span>🔑 Código SIM-XX-XX</span>
+        <span>📊 Análise por tema</span>
+      </div>
+      <div class="card-acessar">Encarar o duelo</div>
+    </a>
+
+  </div>
+
+  <!-- DICA PARA A MÃE -->
+  <div class="dica-mae">
+    <h2>💌 Para a mãe (a guardiã do gabarito!)</h2>
+    <p>Os materiais Quiz e Simulado têm um <b>código de liberação</b> que aparece só depois que sua filha responde TODAS as questões e clica em "Enviar". Sem o código, o gabarito comentado fica trancado.</p>
+    <p>Os códigos seguem este padrão:</p>
+    <p>• Quiz → <span class="codigo-ex">ENG-XX-XX</span> (ex: ENG-12-RP)</p>
+    <p>• Simulado → <span class="codigo-ex">SIM-XX-XX</span> (ex: SIM-19-AB)</p>
+    <p>Quando ela mostrar o código, você digita no campo "🔓 LIBERAR" para ela ver as respostas certas e os comentários. Isso garante que ela <b>fez tudo antes de ver o gabarito</b>.</p>
+  </div>
+
+  <!-- CRONOGRAMA -->
+  <div class="cronograma">
+    <h2>📅 Cronograma sugerido (Sábado → Segunda)</h2>
+
+    <div class="dia">
+      <div class="dia-titulo">📅 SÁBADO — Aprender e Fixar (~1h30)</div>
+      <div class="dia-conteudo">
+        Comece pelo <b>Resumo com Fixação</b> (60-80 min) percorrendo as 6 Issues na ordem. Faça TODOS os Practice Time ao final de cada Issue — é onde você fixa de verdade. Use os botões 🔊 para ouvir a pronúncia em inglês.
+      </div>
+    </div>
+
+    <div class="dia">
+      <div class="dia-titulo">📅 DOMINGO MANHÃ — Testar (~30 min)</div>
+      <div class="dia-conteudo">
+        Faça o <b>Quiz Interativo</b> (15 questões). Mostre o código <b>ENG-XX-XX</b> para sua mãe destravar o gabarito. Anote quais questões você errou e volte na Issue correspondente do Resumo para revisar.
+      </div>
+    </div>
+
+    <div class="dia">
+      <div class="dia-titulo">📅 DOMINGO TARDE — Simular (~1h)</div>
+      <div class="dia-conteudo">
+        Encare o <b>Simulado</b> (25 questões) <b>como uma prova real</b> — sem consultar o resumo. Meta: 18 acertos ou mais. Mostre o código <b>SIM-XX-XX</b> para sua mãe destravar. Olhe a análise por tema e foque nos pontos fracos.
+      </div>
+    </div>
+
+    <div class="dia">
+      <div class="dia-titulo">⚔️ SEGUNDA DE MANHÃ (5-10 min)</div>
+      <div class="dia-conteudo">
+        Apenas uma olhada rápida nos balões de pegadinha (POW! / BAM!) do Resumo e na lista de verbos irregulares. <b>Não estude conteúdo novo!</b> Confie no que estudou. Respira fundo e arrasa! 🦸
+      </div>
+    </div>
+  </div>
+
+  <!-- RODAPÉ -->
+  <div class="rodape">
+    💥 Que cada verbo saia certeiro e que nenhum tense te pegue de surpresa. Boa prova, jovem heroína! ⚡✨
+  </div>
+
+</div>
+
+</body>
+</html>

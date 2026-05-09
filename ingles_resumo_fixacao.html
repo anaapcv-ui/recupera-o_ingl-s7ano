@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💥 ENGLISH HEROES — Recuperação 7º Ano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --amarelo: #ffd23f;
+  --amarelo-claro: #fff5b8;
+  --amarelo-escuro: #f4a300;
+  --azul: #1c75bc;
+  --azul-claro: #4dafe8;
+  --azul-escuro: #0d3a5e;
+  --vermelho: #e63946;
+  --vermelho-escuro: #b8232f;
+  --rosa: #ff6f91;
+  --verde: #3a9d4a;
+  --preto: #1a1a1a;
+  --branco: #fffdf6;
+  --halftone: rgba(0,0,0,0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: var(--preto);
+  background: var(--amarelo);
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(0,0,0,0.05) 1px, transparent 1.5px),
+    radial-gradient(circle at 70% 60%, rgba(0,0,0,0.05) 1px, transparent 1.5px);
+  background-size: 16px 16px, 22px 22px;
+  background-position: 0 0, 8px 8px;
+  min-height: 100vh;
+  padding: 16px;
+  line-height: 1.55;
+}
+
+.container { max-width: 940px; margin: 0 auto; }
+
+/* ===== CAPA ===== */
+.capa {
+  background: var(--azul);
+  border: 4px solid var(--preto);
+  border-radius: 14px;
+  padding: 36px 24px 30px;
+  text-align: center;
+  box-shadow: 8px 8px 0 var(--preto);
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.capa::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 10% 30%, rgba(255,210,63,0.25) 0%, transparent 30%),
+    radial-gradient(circle at 90% 70%, rgba(230,57,70,0.25) 0%, transparent 30%);
+  pointer-events: none;
+}
+.capa::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.25) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+  pointer-events: none;
+  opacity: 0.45;
+}
+.capa-conteudo { position: relative; z-index: 2; }
+.capa h1 {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(2.4em, 7vw, 3.8em);
+  color: var(--amarelo);
+  letter-spacing: 3px;
+  -webkit-text-stroke: 2.5px var(--preto);
+  text-shadow: 4px 4px 0 var(--preto);
+  line-height: 1;
+  margin-bottom: 10px;
+  transform: rotate(-1deg);
+}
+.capa .sub {
+  font-family: 'Bungee', cursive;
+  color: var(--branco);
+  font-size: 0.95em;
+  letter-spacing: 1.5px;
+  margin-bottom: 14px;
+}
+.capa .narrador {
+  background: var(--amarelo);
+  color: var(--preto);
+  display: inline-block;
+  padding: 8px 18px;
+  font-weight: 700;
+  font-size: 0.92em;
+  border: 3px solid var(--preto);
+  border-radius: 6px;
+  transform: rotate(-1.5deg);
+  box-shadow: 4px 4px 0 var(--preto);
+}
+
+/* ===== BURST DECORATIVO ===== */
+.burst {
+  display: inline-block;
+  background: var(--vermelho);
+  color: var(--branco);
+  font-family: 'Bangers', cursive;
+  letter-spacing: 1.5px;
+  padding: 8px 18px;
+  border: 3px solid var(--preto);
+  box-shadow: 4px 4px 0 var(--preto);
+  transform: rotate(-3deg);
+  font-size: 1.1em;
+}
+
+/* ===== PAINEL DE SALVAMENTO ===== */
+.painel-save {
+  background: var(--branco);
+  border: 3px solid var(--preto);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 4px 4px 0 var(--preto);
+}
+.save-info {
+  font-size: 0.88em;
+  color: var(--preto);
+  font-weight: 600;
+}
+.save-info b { color: var(--vermelho); }
+.save-buttons { display: flex; flex-wrap: wrap; gap: 6px; }
+.btn-save {
+  background: var(--azul);
+  color: var(--branco);
+  border: 2.5px solid var(--preto);
+  padding: 5px 11px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.78em;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--preto);
+  transition: all 0.1s;
+}
+.btn-save:hover { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--preto); }
+.btn-save.zerar { background: var(--vermelho); }
+.btn-save.import { background: var(--verde); }
+
+/* ===== NAV ===== */
+.nav-issues {
+  background: var(--branco);
+  border: 3px solid var(--preto);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 28px;
+  box-shadow: 4px 4px 0 var(--preto);
+}
+.nav-titulo {
+  font-family: 'Bangers', cursive;
+  font-size: 1.3em;
+  color: var(--vermelho);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  -webkit-text-stroke: 1px var(--preto);
+}
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+.nav-link {
+  background: var(--amarelo);
+  color: var(--preto);
+  text-decoration: none;
+  font-family: 'Bungee', cursive;
+  font-size: 0.78em;
+  letter-spacing: 0.5px;
+  padding: 8px 10px;
+  border: 2.5px solid var(--preto);
+  border-radius: 6px;
+  text-align: center;
+  box-shadow: 3px 3px 0 var(--preto);
+  transition: all 0.15s;
+}
+.nav-link:hover {
+  transform: translate(2px,2px);
+  box-shadow: 1px 1px 0 var(--preto);
+  background: var(--vermelho);
+  color: var(--branco);
+}
+
+/* ===== ISSUE (SEÇÃO PRINCIPAL) ===== */
+.issue {
+  background: var(--branco);
+  border: 4px solid var(--preto);
+  border-radius: 12px;
+  padding: 0;
+  margin-bottom: 32px;
+  box-shadow: 8px 8px 0 var(--preto);
+  overflow: hidden;
+  position: relative;
+}
+.issue-header {
+  background: var(--vermelho);
+  color: var(--branco);
+  padding: 18px 22px 14px;
+  border-bottom: 4px solid var(--preto);
+  position: relative;
+  overflow: hidden;
+}
+.issue-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px);
+  background-size: 10px 10px;
+  pointer-events: none;
+}
+.issue-header.azul { background: var(--azul); }
+.issue-header.amarelo { background: var(--amarelo); color: var(--preto); }
+.issue-header.amarelo .issue-num { color: var(--vermelho); }
+.issue-header.rosa { background: var(--rosa); }
+.issue-header.verde { background: var(--verde); }
+.issue-num {
+  font-family: 'Bangers', cursive;
+  font-size: 0.95em;
+  letter-spacing: 2px;
+  color: var(--amarelo);
+  -webkit-text-stroke: 1px var(--preto);
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 2;
+}
+.issue-titulo {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(1.6em, 4.5vw, 2.4em);
+  letter-spacing: 2px;
+  -webkit-text-stroke: 2px var(--preto);
+  text-shadow: 3px 3px 0 var(--preto);
+  line-height: 1;
+  position: relative;
+  z-index: 2;
+  transform: rotate(-0.8deg);
+  display: inline-block;
+}
+.issue-sub {
+  font-family: 'Bungee', cursive;
+  font-size: 0.78em;
+  letter-spacing: 1px;
+  margin-top: 8px;
+  position: relative;
+  z-index: 2;
+  opacity: 0.95;
+}
+
+.issue-body { padding: 22px 22px 26px; }
+
+/* ===== PAINÉIS DE QUADRINHO ===== */
+.painel {
+  background: var(--branco);
+  border: 3px solid var(--preto);
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  box-shadow: 4px 4px 0 var(--preto);
+  position: relative;
+}
+.painel.amarelo { background: var(--amarelo-claro); }
+.painel.azul { background: #e3f2fd; }
+.painel.rosa { background: #ffe5ec; }
+.painel.verde { background: #e6f5e8; }
+.painel-titulo {
+  font-family: 'Bangers', cursive;
+  font-size: 1.35em;
+  color: var(--azul);
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  -webkit-text-stroke: 0.5px var(--preto);
+}
+.painel.amarelo .painel-titulo { color: var(--vermelho); }
+.painel.rosa .painel-titulo { color: #b3214b; }
+.painel.verde .painel-titulo { color: #1f6e2a; }
+
+/* ===== TABELAS ===== */
+.tabela-comic {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  background: var(--branco);
+  border: 2.5px solid var(--preto);
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 0.93em;
+}
+.tabela-comic th {
+  background: var(--preto);
+  color: var(--amarelo);
+  font-family: 'Bungee', cursive;
+  font-size: 0.82em;
+  letter-spacing: 1px;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 2.5px solid var(--preto);
+}
+.tabela-comic td {
+  padding: 8px 12px;
+  border-bottom: 1.5px solid #ddd;
+  vertical-align: middle;
+}
+.tabela-comic tr:last-child td { border-bottom: none; }
+.tabela-comic tr:nth-child(even) td { background: #fffaee; }
+.tabela-comic .destaque {
+  font-weight: 800;
+  color: var(--vermelho);
+  font-family: 'Nunito', sans-serif;
+}
+
+/* ===== FÓRMULA / BOX DESTAQUE ===== */
+.formula {
+  background: var(--preto);
+  color: var(--amarelo);
+  font-family: 'Bungee', cursive;
+  font-size: 0.95em;
+  letter-spacing: 1px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  text-align: center;
+  margin: 12px 0;
+  border: 2.5px solid var(--preto);
+  box-shadow: 4px 4px 0 var(--vermelho);
+  word-spacing: 4px;
+}
+.formula.azul { box-shadow: 4px 4px 0 var(--azul); }
+.formula.verde { box-shadow: 4px 4px 0 var(--verde); }
+
+/* ===== EXEMPLO COM ÁUDIO ===== */
+.exemplo {
+  background: var(--branco);
+  border-left: 5px solid var(--azul);
+  padding: 10px 14px;
+  margin: 8px 0;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95em;
+  font-style: italic;
+  border-top: 1.5px solid #ddd;
+  border-right: 1.5px solid #ddd;
+  border-bottom: 1.5px solid #ddd;
+}
+.exemplo.verde { border-left-color: var(--verde); }
+.exemplo.vermelho { border-left-color: var(--vermelho); }
+.exemplo .ingles { color: var(--azul-escuro); font-weight: 700; }
+.exemplo .traducao { color: #555; font-size: 0.88em; display: block; margin-top: 2px; font-style: normal; }
+.exemplo .destaque { background: var(--amarelo); padding: 1px 5px; font-style: normal; font-weight: 800; color: var(--preto); border-radius: 3px; }
+
+/* ===== BOTÃO DE ÁUDIO ===== */
+.btn-audio {
+  background: var(--azul);
+  color: var(--branco);
+  border: 2px solid var(--preto);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.85em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 2px 2px 0 var(--preto);
+  transition: all 0.1s;
+  padding: 0;
+}
+.btn-audio:hover { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--preto); }
+.btn-audio:active { background: var(--vermelho); }
+.btn-audio.pequeno { width: 24px; height: 24px; font-size: 0.7em; }
+
+/* ===== BALÃO DE PEGADINHA ===== */
+.balao-pegadinha {
+  background: var(--vermelho);
+  color: var(--branco);
+  border: 3px solid var(--preto);
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin: 14px 0;
+  position: relative;
+  box-shadow: 4px 4px 0 var(--preto);
+  font-weight: 600;
+}
+.balao-pegadinha::before {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 28px;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 14px solid var(--preto);
+}
+.balao-pegadinha::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 31px;
+  width: 0;
+  height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 11px solid var(--vermelho);
+}
+.balao-pegadinha .pow {
+  font-family: 'Bangers', cursive;
+  font-size: 1.4em;
+  letter-spacing: 2px;
+  color: var(--amarelo);
+  -webkit-text-stroke: 1px var(--preto);
+  margin-right: 8px;
+}
+.balao-pegadinha b { color: var(--amarelo); }
+
+/* ===== DICA / NOTA ===== */
+.dica {
+  background: var(--amarelo);
+  border: 2.5px solid var(--preto);
+  padding: 10px 14px;
+  margin: 10px 0;
+  border-radius: 6px;
+  font-size: 0.93em;
+  box-shadow: 3px 3px 0 var(--preto);
+}
+.dica .icone {
+  font-family: 'Bangers', cursive;
+  color: var(--vermelho);
+  letter-spacing: 1px;
+  font-size: 1.05em;
+  -webkit-text-stroke: 0.5px var(--preto);
+  margin-right: 4px;
+}
+
+/* ===== CHIPS / TAGS ===== */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+.chip {
+  background: var(--azul);
+  color: var(--branco);
+  border: 2px solid var(--preto);
+  padding: 3px 10px;
+  border-radius: 14px;
+  font-size: 0.83em;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.chip.amarelo { background: var(--amarelo); color: var(--preto); }
+.chip.vermelho { background: var(--vermelho); color: var(--branco); }
+.chip.verde { background: var(--verde); color: var(--branco); }
+
+/* ===== PRACTICE TIME ===== */
+.practice {
+  background: var(--preto);
+  color: var(--branco);
+  border-radius: 10px;
+  padding: 22px;
+  margin-top: 22px;
+  position: relative;
+  border: 3px solid var(--preto);
+  box-shadow: 6px 6px 0 var(--amarelo);
+}
+.practice-header {
+  font-family: 'Bangers', cursive;
+  font-size: 1.7em;
+  color: var(--amarelo);
+  letter-spacing: 2px;
+  -webkit-text-stroke: 1.5px var(--preto);
+  text-shadow: 3px 3px 0 var(--vermelho);
+  text-align: center;
+  margin-bottom: 6px;
+  transform: rotate(-1.5deg);
+}
+.practice-sub {
+  text-align: center;
+  font-size: 0.85em;
+  color: var(--amarelo);
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+.practice-item {
+  background: var(--branco);
+  color: var(--preto);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border: 2.5px solid var(--amarelo);
+}
+.practice-q {
+  font-weight: 700;
+  font-size: 0.95em;
+  margin-bottom: 8px;
+  color: var(--preto);
+}
+.practice-q .blank {
+  display: inline-block;
+  border-bottom: 2.5px solid var(--vermelho);
+  min-width: 70px;
+  font-weight: 800;
+  color: var(--vermelho);
+  text-align: center;
+  font-family: 'Bungee', cursive;
+  font-size: 0.85em;
+  padding: 0 4px;
+}
+.practice-q .blank.preenchido { background: var(--amarelo); border-color: var(--preto); color: var(--preto); }
+.practice-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2.5px solid var(--preto);
+  border-radius: 6px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95em;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.practice-input:focus { outline: none; border-color: var(--azul); background: #e3f2fd; }
+.practice-input.correta { background: #d4f4dd; border-color: var(--verde); }
+.practice-input.errada { background: #ffe5ec; border-color: var(--vermelho); }
+.practice-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn-pratica {
+  background: var(--azul);
+  color: var(--branco);
+  border: 2.5px solid var(--preto);
+  padding: 6px 14px;
+  font-family: 'Bungee', cursive;
+  font-size: 0.78em;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--preto);
+  transition: all 0.1s;
+}
+.btn-pratica:hover { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--preto); }
+.btn-pratica.ver { background: var(--amarelo); color: var(--preto); }
+.practice-feedback {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.88em;
+  display: none;
+  font-weight: 600;
+}
+.practice-feedback.correto { background: #d4f4dd; color: #1f5e2a; border: 2px solid var(--verde); display: block; }
+.practice-feedback.errado { background: #ffe5ec; color: #8a1228; border: 2px solid var(--vermelho); display: block; }
+.practice-feedback.modelo { background: var(--amarelo-claro); color: var(--preto); border: 2px solid var(--amarelo-escuro); display: block; }
+
+/* ===== GLOSSÁRIO E IRREGULARES ===== */
+.lista-irregulares {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+  margin: 14px 0;
+}
+.verbo-irregular {
+  background: var(--branco);
+  border: 2.5px solid var(--preto);
+  border-radius: 6px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.9em;
+  box-shadow: 2px 2px 0 var(--preto);
+}
+.verbo-irregular .par {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.verbo-irregular .base { font-weight: 700; color: var(--azul-escuro); }
+.verbo-irregular .past { font-weight: 800; color: var(--vermelho); }
+.verbo-irregular .pt { font-size: 0.75em; color: #777; }
+
+.glossario-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+  margin: 14px 0;
+}
+.gloss-item {
+  background: var(--branco);
+  border: 2px solid var(--preto);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.88em;
+  box-shadow: 2px 2px 0 var(--preto);
+}
+.gloss-term {
+  font-weight: 800;
+  color: var(--vermelho);
+  font-family: 'Bungee', cursive;
+  letter-spacing: 0.5px;
+  font-size: 0.85em;
+  margin-bottom: 3px;
+}
+
+/* ===== MENSAGEM FINAL ===== */
+.final-pow {
+  background: var(--vermelho);
+  color: var(--branco);
+  border: 4px solid var(--preto);
+  border-radius: 14px;
+  padding: 30px 20px;
+  text-align: center;
+  margin: 30px 0;
+  box-shadow: 8px 8px 0 var(--preto);
+  position: relative;
+}
+.final-pow h2 {
+  font-family: 'Bangers', cursive;
+  font-size: 2.4em;
+  letter-spacing: 3px;
+  color: var(--amarelo);
+  -webkit-text-stroke: 2px var(--preto);
+  text-shadow: 4px 4px 0 var(--preto);
+  margin-bottom: 12px;
+  transform: rotate(-2deg);
+}
+.final-pow p { font-size: 1em; font-weight: 600; }
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  background: var(--preto);
+  color: var(--amarelo);
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 2.5px solid var(--amarelo);
+  font-family: 'Bungee', cursive;
+  font-size: 0.85em;
+  letter-spacing: 1px;
+  box-shadow: 4px 4px 0 var(--vermelho);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s;
+  pointer-events: none;
+  z-index: 1000;
+}
+.toast.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== UTILITÁRIOS ===== */
+.mb-1 { margin-bottom: 8px; }
+.mb-2 { margin-bottom: 16px; }
+.mt-2 { margin-top: 16px; }
+.center { text-align: center; }
+
+mark { background: var(--amarelo); padding: 1px 4px; font-weight: 800; border-radius: 3px; }
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 600px) {
+  body { padding: 10px; }
+  .capa { padding: 26px 16px 22px; }
+  .issue-body { padding: 18px 14px 22px; }
+  .painel { padding: 14px; }
+  .practice { padding: 18px 14px; }
+  .formula { font-size: 0.85em; padding: 10px 12px; }
+  .nav-grid { grid-template-columns: repeat(2, 1fr); }
+  .lista-irregulares { grid-template-columns: 1fr; }
+  .glossario-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ============ CAPA ============ -->
+<div class="capa">
+  <div class="capa-conteudo">
+    <h1>ENGLISH HEROES</h1>
+    <div class="sub">RECUPERAÇÃO · 7º ANO · 1º TRIMESTRE</div>
+    <div class="narrador">📖 Você é o herói desta missão, jovem aprendiz!</div>
+  </div>
+</div>
+
+<!-- ============ PAINEL DE SALVAMENTO ============ -->
+<div class="painel-save">
+  <div class="save-info">💾 Último salvamento: <b id="ultimo-save">—</b></div>
+  <div class="save-buttons">
+    <button class="btn-save" onclick="exportarProgresso()">📥 Exportar</button>
+    <button class="btn-save import" onclick="document.getElementById('input-importar').click()">📤 Importar</button>
+    <button class="btn-save zerar" onclick="zerarProgresso()">🗑️ Zerar</button>
+    <input type="file" id="input-importar" accept=".json" style="display:none" onchange="importarProgresso(event)">
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<div class="nav-issues">
+  <div class="nav-titulo">⚡ ISSUES — escolha o capítulo</div>
+  <div class="nav-grid">
+    <a href="#issue1" class="nav-link">#1 Present</a>
+    <a href="#issue2" class="nav-link">#2 Compare</a>
+    <a href="#issue3" class="nav-link">#3 Was/Were</a>
+    <a href="#issue4" class="nav-link">#4 Past</a>
+    <a href="#issue5" class="nav-link">#5 Past Cont</a>
+    <a href="#issue6" class="nav-link">#6 Detective</a>
+    <a href="#irregulares" class="nav-link">⭐ Verbs</a>
+    <a href="#glossario" class="nav-link">📖 Gloss</a>
+  </div>
+</div>
+
+<!-- ============ ISSUE #1 — PRESENT POWERS ============ -->
+<div class="issue" id="issue1">
+  <div class="issue-header azul">
+    <div class="issue-num">ISSUE #1</div>
+    <div class="issue-titulo">PRESENT POWERS</div>
+    <div class="issue-sub">SIMPLE PRESENT + PRESENT CONTINUOUS</div>
+  </div>
+  <div class="issue-body">
+
+    <!-- SIMPLE PRESENT -->
+    <div class="painel azul">
+      <div class="painel-titulo">⚡ SIMPLE PRESENT — rotinas e fatos</div>
+      <p class="mb-1">Usamos o <mark>Simple Present</mark> para falar de hábitos, rotinas, fatos e gostos. Coisas que acontecem <b>sempre</b>, <b>geralmente</b>, <b>todos os dias</b>.</p>
+
+      <div class="chips">
+        <span class="chip">always</span>
+        <span class="chip">usually</span>
+        <span class="chip">often</span>
+        <span class="chip">every day</span>
+        <span class="chip">on Mondays</span>
+        <span class="chip">never</span>
+      </div>
+
+      <div class="formula azul">SUJEITO + VERBO (he/she/it +s)</div>
+
+      <table class="tabela-comic">
+        <tr><th>Forma</th><th>Estrutura</th><th>Exemplo</th></tr>
+        <tr>
+          <td><span class="chip verde">✅ Afirmativa</span></td>
+          <td>I/You/We/They + verbo<br>He/She/It + verbo+<b>s</b></td>
+          <td>I <b>play</b> soccer.<br>She <b>plays</b> soccer.</td>
+        </tr>
+        <tr>
+          <td><span class="chip vermelho">❌ Negativa</span></td>
+          <td>I/You/We/They + <b>don't</b> + verbo<br>He/She/It + <b>doesn't</b> + verbo</td>
+          <td>I <b>don't play</b> soccer.<br>She <b>doesn't play</b> soccer.</td>
+        </tr>
+        <tr>
+          <td><span class="chip amarelo">❓ Pergunta</span></td>
+          <td><b>Do</b> + I/you/we/they + verbo?<br><b>Does</b> + he/she/it + verbo?</td>
+          <td><b>Do</b> you play soccer?<br><b>Does</b> she play soccer?</td>
+        </tr>
+      </table>
+
+      <div class="exemplo">
+        <button class="btn-audio" onclick="falar('She plays soccer every Saturday.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">She <span class="destaque">plays</span> soccer every Saturday.</span>
+          <span class="traducao">Ela joga futebol todo sábado.</span>
+        </div>
+      </div>
+      <div class="exemplo">
+        <button class="btn-audio" onclick="falar('My father does not like to cook.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">My father <span class="destaque">doesn't</span> like to cook.</span>
+          <span class="traducao">Meu pai não gosta de cozinhar.</span>
+        </div>
+      </div>
+      <div class="exemplo">
+        <button class="btn-audio" onclick="falar('Do you like to study English?')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles"><span class="destaque">Do</span> you like to study English?</span>
+          <span class="traducao">Você gosta de estudar inglês?</span>
+        </div>
+      </div>
+
+      <div class="balao-pegadinha">
+        <span class="pow">POW! ⚠️</span>
+        Em <b>perguntas</b> e <b>negativas</b> com <b>does/doesn't</b>, o verbo principal <b>NÃO leva S</b>! É: <i>"Does she <u>play</u>?"</i> e não <i>"Does she plays?"</i>
+      </div>
+    </div>
+
+    <!-- PRESENT CONTINUOUS -->
+    <div class="painel rosa">
+      <div class="painel-titulo">💥 PRESENT CONTINUOUS — agora, neste momento</div>
+      <p class="mb-1">Usamos o <mark>Present Continuous</mark> para falar de ações que estão acontecendo <b>agora</b>, <b>neste momento</b>, <b>enquanto eu falo</b>.</p>
+
+      <div class="chips">
+        <span class="chip vermelho">now</span>
+        <span class="chip vermelho">right now</span>
+        <span class="chip vermelho">at the moment</span>
+        <span class="chip vermelho">today</span>
+      </div>
+
+      <div class="formula">SUJEITO + AM/IS/ARE + VERBO-ING</div>
+
+      <table class="tabela-comic">
+        <tr><th>Pronome</th><th>Forma do "BE"</th><th>Exemplo</th></tr>
+        <tr><td><b>I</b></td><td><span class="destaque">am (I'm)</span></td><td>I <b>am playing</b>. / I'm playing.</td></tr>
+        <tr><td><b>He / She / It</b></td><td><span class="destaque">is</span></td><td>She <b>is playing</b>. / She's playing.</td></tr>
+        <tr><td><b>You / We / They</b></td><td><span class="destaque">are</span></td><td>They <b>are playing</b>. / They're playing.</td></tr>
+      </table>
+
+      <div class="exemplo verde">
+        <button class="btn-audio" onclick="falar('She is playing soccer now.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">She <span class="destaque">is playing</span> soccer now.</span>
+          <span class="traducao">Ela está jogando futebol agora.</span>
+        </div>
+      </div>
+      <div class="exemplo verde">
+        <button class="btn-audio" onclick="falar('I am studying for my English test.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">I <span class="destaque">am studying</span> for my English test.</span>
+          <span class="traducao">Eu estou estudando para minha prova de inglês.</span>
+        </div>
+      </div>
+
+      <div class="balao-pegadinha">
+        <span class="pow">BAM! 💥</span>
+        Cuidado com a regra do <b>-ING</b>: verbo terminado em <b>-e</b>, tira o e e põe -ing (write → writ<b>ing</b>). Verbo curto vogal+consoante, dobra a consoante (sit → sit<b>ting</b>).
+      </div>
+    </div>
+
+    <!-- DIFERENÇA SIMPLE x CONTINUOUS -->
+    <div class="painel amarelo">
+      <div class="painel-titulo">🦸 SIMPLE PRESENT vs PRESENT CONTINUOUS</div>
+      <table class="tabela-comic">
+        <tr><th>Simple Present 🔵</th><th>Present Continuous 🔴</th></tr>
+        <tr>
+          <td><b>Sempre / todo dia</b><br>I play soccer every Saturday.</td>
+          <td><b>Agora / neste momento</b><br>I am playing soccer now.</td>
+        </tr>
+        <tr>
+          <td>Hábitos e rotinas</td>
+          <td>Ações em andamento</td>
+        </tr>
+        <tr>
+          <td>Fatos: <i>The Earth orbits the Sun.</i></td>
+          <td>Mudanças: <i>It's getting cold.</i></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- YES/NO ANSWERS -->
+    <div class="painel verde">
+      <div class="painel-titulo">✅ YES / NO — respostas curtas</div>
+      <p class="mb-1">A resposta curta usa o <b>mesmo verbo auxiliar</b> da pergunta:</p>
+
+      <table class="tabela-comic">
+        <tr><th>Pergunta</th><th>Sim ✅</th><th>Não ❌</th></tr>
+        <tr><td>Do you like pizza?</td><td>Yes, I <b>do</b>.</td><td>No, I <b>don't</b>.</td></tr>
+        <tr><td>Does she dance?</td><td>Yes, she <b>does</b>.</td><td>No, she <b>doesn't</b>.</td></tr>
+        <tr><td>Are you doing a test?</td><td>Yes, I <b>am</b>.</td><td>No, I'm <b>not</b>.</td></tr>
+        <tr><td>Is he sleeping?</td><td>Yes, he <b>is</b>.</td><td>No, he <b>isn't</b>.</td></tr>
+      </table>
+
+      <div class="dica">
+        <span class="icone">DICA!</span> Pergunta com <b>DO/DOES</b> → resposta com <b>do/does</b>. Pergunta com <b>AM/IS/ARE</b> → resposta com <b>am/is/are</b>. Nunca misture!
+      </div>
+    </div>
+
+    <!-- PRACTICE TIME #1 -->
+    <div class="practice" id="practice1">
+      <div class="practice-header">PRACTICE TIME!</div>
+      <div class="practice-sub">Complete as frases · prove seus poderes! ⚡</div>
+
+      <div class="practice-item">
+        <div class="practice-q">1. She <span class="blank" id="b1-1-disp">___</span> (study) English every day. <small>(Simple Present)</small></div>
+        <input type="text" class="practice-input" id="p1-1" placeholder="digite o verbo certo..." oninput="atualizarBlank('b1-1-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p1-1', ['studies'], 'Simple Present + she/he/it → verbo + S → studies')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p1-1', 'studies')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb1-1"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">2. They <span class="blank" id="b1-2-disp">___</span> (not / like) coffee. <small>(forma negativa)</small></div>
+        <input type="text" class="practice-input" id="p1-2" placeholder="ex: don't like / doesn't like..." oninput="atualizarBlank('b1-2-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p1-2', ['don\\'t like','do not like'], 'They → don\\'t + verbo base → don\\'t like')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p1-2', 'don\\'t like')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb1-2"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">3. Look! The cat <span class="blank" id="b1-3-disp">___</span> (sleep) on the sofa. <small>(Present Continuous)</small></div>
+        <input type="text" class="practice-input" id="p1-3" placeholder="forma do be + verbo-ing..." oninput="atualizarBlank('b1-3-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p1-3', ['is sleeping'], 'cat = it → IS + sleep+ing = is sleeping')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p1-3', 'is sleeping')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb1-3"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">4. Pergunta: "Do you like ice cream?" Resposta curta afirmativa: "<span class="blank" id="b1-4-disp">___</span>"</div>
+        <input type="text" class="practice-input" id="p1-4" placeholder="ex: Yes, I am / Yes, I do..." oninput="atualizarBlank('b1-4-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p1-4', ['yes, i do','yes i do'], 'Pergunta com DO → resposta com DO. Yes, I do.')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p1-4', 'Yes, I do.')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb1-4"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ ISSUE #2 — COMPARE & CONQUER ============ -->
+<div class="issue" id="issue2">
+  <div class="issue-header amarelo">
+    <div class="issue-num">ISSUE #2</div>
+    <div class="issue-titulo">COMPARE & CONQUER</div>
+    <div class="issue-sub">COMPARATIVOS E SUPERLATIVOS</div>
+  </div>
+  <div class="issue-body">
+
+    <!-- COMPARATIVOS -->
+    <div class="painel azul">
+      <div class="painel-titulo">⚡ COMPARATIVOS — comparar 2 coisas</div>
+      <p class="mb-1">Para comparar <b>duas coisas</b>, usamos comparativos. A regra muda conforme o tamanho do adjetivo:</p>
+
+      <table class="tabela-comic">
+        <tr><th>Tipo</th><th>Regra</th><th>Exemplo</th></tr>
+        <tr>
+          <td><b>Adjetivo curto</b><br>(1 sílaba)</td>
+          <td>adjetivo + <span class="destaque">-er than</span></td>
+          <td>tall → <b>taller than</b><br>old → <b>older than</b><br>young → <b>younger than</b></td>
+        </tr>
+        <tr>
+          <td><b>Adjetivo longo</b><br>(2+ sílabas)</td>
+          <td><span class="destaque">more</span> + adjetivo + <span class="destaque">than</span></td>
+          <td>interesting → <b>more interesting than</b><br>difficult → <b>more difficult than</b></td>
+        </tr>
+        <tr>
+          <td><b>Irregulares</b><br>(decoreba!)</td>
+          <td>forma própria</td>
+          <td>good → <b>better than</b><br>bad → <b>worse than</b><br>far → <b>farther than</b></td>
+        </tr>
+      </table>
+
+      <div class="exemplo">
+        <button class="btn-audio" onclick="falar('My brother is taller than me.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">My brother is <span class="destaque">taller than</span> me.</span>
+          <span class="traducao">Meu irmão é mais alto que eu.</span>
+        </div>
+      </div>
+      <div class="exemplo">
+        <button class="btn-audio" onclick="falar('Math is more difficult than Art.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">Math is <span class="destaque">more difficult than</span> Art.</span>
+          <span class="traducao">Matemática é mais difícil que Artes.</span>
+        </div>
+      </div>
+
+      <div class="balao-pegadinha">
+        <span class="pow">POW! 🚫</span>
+        <b>"More tall"</b> está <b>ERRADO</b>! Tall é curto → vira <b>taller</b>. <b>"Taller than"</b> ✅. Nunca use <i>more</i> com adjetivo curto.
+      </div>
+    </div>
+
+    <!-- SUPERLATIVOS -->
+    <div class="painel rosa">
+      <div class="painel-titulo">💥 SUPERLATIVOS — o melhor de todos!</div>
+      <p class="mb-1">Para dizer que algo é <b>o mais</b> de todos, usamos superlativos. Sempre vem com <b>THE</b> antes:</p>
+
+      <div class="formula">THE + ADJETIVO + EST &nbsp;|&nbsp; THE + MOST + ADJETIVO</div>
+
+      <table class="tabela-comic">
+        <tr><th>Tipo</th><th>Regra</th><th>Exemplo</th></tr>
+        <tr>
+          <td><b>Adjetivo curto</b></td>
+          <td><span class="destaque">the</span> + adjetivo + <span class="destaque">-est</span></td>
+          <td>tall → <b>the tallest</b><br>old → <b>the oldest</b><br>young → <b>the youngest</b></td>
+        </tr>
+        <tr>
+          <td><b>Adjetivo longo</b></td>
+          <td><span class="destaque">the most</span> + adjetivo</td>
+          <td>interesting → <b>the most interesting</b><br>difficult → <b>the most difficult</b></td>
+        </tr>
+        <tr>
+          <td><b>Irregulares</b></td>
+          <td>forma própria</td>
+          <td>good → <b>the best</b><br>bad → <b>the worst</b></td>
+        </tr>
+      </table>
+
+      <div class="exemplo verde">
+        <button class="btn-audio" onclick="falar('Dean is the oldest person in the family.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">Dean is <span class="destaque">the oldest</span> person in the family.</span>
+          <span class="traducao">Dean é a pessoa mais velha da família.</span>
+        </div>
+      </div>
+      <div class="exemplo verde">
+        <button class="btn-audio" onclick="falar('Around the World in Eighty Days is the most interesting book.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">Around the World in Eighty Days is <span class="destaque">the most interesting</span> book.</span>
+          <span class="traducao">A Volta ao Mundo em 80 Dias é o livro mais interessante.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABELA RÁPIDA -->
+    <div class="painel amarelo">
+      <div class="painel-titulo">🎯 TABELA RÁPIDA — palavras das provas</div>
+      <table class="tabela-comic">
+        <tr><th>Adjetivo</th><th>Comparativo</th><th>Superlativo</th></tr>
+        <tr><td>tall (alto)</td><td>taller than</td><td>the tallest</td></tr>
+        <tr><td>old (velho)</td><td>older than</td><td>the oldest</td></tr>
+        <tr><td>young (jovem)</td><td>younger than</td><td>the youngest</td></tr>
+        <tr><td>short (baixo)</td><td>shorter than</td><td>the shortest</td></tr>
+        <tr><td>long (longo)</td><td>longer than</td><td>the longest</td></tr>
+        <tr><td>big (grande)</td><td>bigger than</td><td>the biggest</td></tr>
+        <tr><td>difficult (difícil)</td><td>more difficult than</td><td>the most difficult</td></tr>
+        <tr><td>interesting (interessante)</td><td>more interesting than</td><td>the most interesting</td></tr>
+        <tr><td><b>good</b> (bom) ⚠️</td><td><b>better than</b></td><td><b>the best</b></td></tr>
+        <tr><td><b>bad</b> (ruim) ⚠️</td><td><b>worse than</b></td><td><b>the worst</b></td></tr>
+      </table>
+
+      <div class="dica">
+        <span class="icone">SUPER DICA!</span> Se o adjetivo termina em <b>-y</b>, troca por <b>-i</b>: easy → eas<b>ier</b> than / the eas<b>iest</b>. Se é vogal+consoante, dobra: big → b<b>igg</b>er / the b<b>igg</b>est.
+      </div>
+    </div>
+
+    <!-- PRACTICE TIME #2 -->
+    <div class="practice" id="practice2">
+      <div class="practice-header">PRACTICE TIME!</div>
+      <div class="practice-sub">Compare e conquiste! 🏆</div>
+
+      <div class="practice-item">
+        <div class="practice-q">1. Sarah's hair is <span class="blank" id="b2-1-disp">___</span> (long) than Karen's. <small>(comparativo)</small></div>
+        <input type="text" class="practice-input" id="p2-1" placeholder="long é curto..." oninput="atualizarBlank('b2-1-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p2-1', ['longer'], 'long → curto → longer than')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p2-1', 'longer')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb2-1"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">2. My brothers are <span class="blank" id="b2-2-disp">___</span> (old) than me.</div>
+        <input type="text" class="practice-input" id="p2-2" placeholder="..." oninput="atualizarBlank('b2-2-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p2-2', ['older'], 'old → curto → older than')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p2-2', 'older')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb2-2"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">3. History is <span class="blank" id="b2-3-disp">___</span> (interesting) subject in school. <small>(superlativo)</small></div>
+        <input type="text" class="practice-input" id="p2-3" placeholder="adjetivo longo..." oninput="atualizarBlank('b2-3-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p2-3', ['the most interesting'], 'interesting é longo → the most interesting')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p2-3', 'the most interesting')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb2-3"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">4. Mount Everest is <span class="blank" id="b2-4-disp">___</span> (tall) mountain in the world. <small>(superlativo)</small></div>
+        <input type="text" class="practice-input" id="p2-4" placeholder="..." oninput="atualizarBlank('b2-4-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p2-4', ['the tallest'], 'tall é curto → the tallest')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p2-4', 'the tallest')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb2-4"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ ISSUE #3 — WAS & WERE ============ -->
+<div class="issue" id="issue3">
+  <div class="issue-header verde">
+    <div class="issue-num">ISSUE #3</div>
+    <div class="issue-titulo">WAS &amp; WERE</div>
+    <div class="issue-sub">OS VIAJANTES DO TEMPO ⏰</div>
+  </div>
+  <div class="issue-body">
+
+    <div class="painel azul">
+      <div class="painel-titulo">⏰ WAS / WERE — verbo "ser/estar" no passado</div>
+      <p class="mb-1">Use <mark>WAS</mark> ou <mark>WERE</mark> para dizer que algo <b>era</b> ou <b>estava</b> no passado.</p>
+
+      <table class="tabela-comic">
+        <tr><th>Pronome</th><th>✅ Afirmativo</th><th>❌ Negativo</th></tr>
+        <tr><td><b>I</b></td><td><span class="destaque">was</span></td><td>wasn't</td></tr>
+        <tr><td><b>You</b></td><td><span class="destaque">were</span></td><td>weren't</td></tr>
+        <tr><td><b>He / She / It</b></td><td><span class="destaque">was</span></td><td>wasn't</td></tr>
+        <tr><td><b>We / You / They</b></td><td><span class="destaque">were</span></td><td>weren't</td></tr>
+      </table>
+
+      <div class="formula azul">WAS = singular (1 só) &nbsp;|&nbsp; WERE = plural (vários) + YOU</div>
+
+      <p class="mb-1 mt-2"><b>❓ Perguntas:</b></p>
+      <div class="exemplo">
+        <button class="btn-audio" onclick="falar('Was he happy yesterday?')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles"><span class="destaque">Was</span> he happy yesterday?</span>
+          <span class="traducao">Ele estava feliz ontem? → Yes, he was. / No, he wasn't.</span>
+        </div>
+      </div>
+      <div class="exemplo">
+        <button class="btn-audio" onclick="falar('Were they at school?')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles"><span class="destaque">Were</span> they at school?</span>
+          <span class="traducao">Eles estavam na escola? → Yes, they were. / No, they weren't.</span>
+        </div>
+      </div>
+
+      <div class="balao-pegadinha">
+        <span class="pow">BAM! 💥</span>
+        <b>YOU</b> sempre usa <b>WERE</b>, mesmo quando é uma só pessoa! "<i>Were you at home?</i>" e nunca "Was you...".
+      </div>
+    </div>
+
+    <!-- THERE WAS / THERE WERE -->
+    <div class="painel rosa">
+      <div class="painel-titulo">🦸 THERE WAS / THERE WERE — havia / existia</div>
+      <p class="mb-1">Para dizer que <b>existia</b> ou <b>havia</b> algo no passado:</p>
+
+      <div class="formula">THERE WAS = 1 só (singular) &nbsp;|&nbsp; THERE WERE = vários (plural)</div>
+
+      <table class="tabela-comic">
+        <tr><th>Forma</th><th>Exemplo</th></tr>
+        <tr>
+          <td><span class="destaque">There was</span> (1 só)</td>
+          <td>There <b>was</b> a beautiful sofa in the room.<br><i>(Havia um sofá bonito na sala)</i></td>
+        </tr>
+        <tr>
+          <td><span class="destaque">There were</span> (vários)</td>
+          <td>There <b>were</b> four lamps in the room.<br><i>(Havia quatro luminárias na sala)</i></td>
+        </tr>
+        <tr>
+          <td><span class="destaque">There wasn't</span> (negativo singular)</td>
+          <td>There <b>wasn't</b> a desk next to the window.</td>
+        </tr>
+        <tr>
+          <td><span class="destaque">There weren't</span> (negativo plural)</td>
+          <td>There <b>weren't</b> any books on the bookcase.</td>
+        </tr>
+      </table>
+
+      <div class="exemplo verde">
+        <button class="btn-audio" onclick="falar('There was a beautiful sofa.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">There <span class="destaque">was</span> a beautiful sofa.</span>
+          <span class="traducao">Havia um sofá bonito.</span>
+        </div>
+      </div>
+      <div class="exemplo verde">
+        <button class="btn-audio" onclick="falar('There were books on the bookcase.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">There <span class="destaque">were</span> books on the bookcase.</span>
+          <span class="traducao">Havia livros na estante.</span>
+        </div>
+      </div>
+
+      <div class="dica">
+        <span class="icone">FOCO! 🎯</span> Olhe o que vem <b>depois</b>: 1 sofa → was. 4 lamps → were. Books (plural) → were. Esse é o segredo da Q9 da prova!
+      </div>
+    </div>
+
+    <!-- PRACTICE TIME #3 -->
+    <div class="practice" id="practice3">
+      <div class="practice-header">PRACTICE TIME!</div>
+      <div class="practice-sub">Viaje no tempo com sabedoria! ⏰</div>
+
+      <div class="practice-item">
+        <div class="practice-q">1. He <span class="blank" id="b3-1-disp">___</span> really happy yesterday.</div>
+        <input type="text" class="practice-input" id="p3-1" placeholder="was ou were?" oninput="atualizarBlank('b3-1-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p3-1', ['was'], 'He = singular → WAS')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p3-1', 'was')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb3-1"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">2. Tom and I <span class="blank" id="b3-2-disp">___</span> at the drugstore at 9 p.m.</div>
+        <input type="text" class="practice-input" id="p3-2" placeholder="..." oninput="atualizarBlank('b3-2-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p3-2', ['were'], 'Tom and I = nós (plural) → WERE')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p3-2', 'were')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb3-2"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">3. There <span class="blank" id="b3-3-disp">___</span> a beautiful sofa in the old living room. <small>(1 só sofá)</small></div>
+        <input type="text" class="practice-input" id="p3-3" placeholder="was ou were?" oninput="atualizarBlank('b3-3-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p3-3', ['was'], '1 sofa = singular → there WAS')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p3-3', 'was')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb3-3"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">4. There <span class="blank" id="b3-4-disp">___</span> books on the bookcase. <small>(vários livros)</small></div>
+        <input type="text" class="practice-input" id="p3-4" placeholder="..." oninput="atualizarBlank('b3-4-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p3-4', ['were'], 'books = plural → there WERE')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p3-4', 'were')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb3-4"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">5. <span class="blank" id="b3-5-disp">___</span> you at school yesterday? <small>(pergunta com YOU)</small></div>
+        <input type="text" class="practice-input" id="p3-5" placeholder="..." oninput="atualizarBlank('b3-5-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p3-5', ['were'], 'YOU sempre usa WERE')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p3-5', 'Were')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb3-5"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ ISSUE #4 — SIMPLE PAST ============ -->
+<div class="issue" id="issue4">
+  <div class="issue-header">
+    <div class="issue-num">ISSUE #4</div>
+    <div class="issue-titulo">MISSION: PAST</div>
+    <div class="issue-sub">SIMPLE PAST · ações terminadas no passado</div>
+  </div>
+  <div class="issue-body">
+
+    <div class="painel azul">
+      <div class="painel-titulo">🎯 SIMPLE PAST — quando usar?</div>
+      <p class="mb-1">Para falar de ações que <b>aconteceram e terminaram</b> no passado.</p>
+
+      <div class="chips">
+        <span class="chip vermelho">yesterday</span>
+        <span class="chip vermelho">last week</span>
+        <span class="chip vermelho">last night</span>
+        <span class="chip vermelho">last summer</span>
+        <span class="chip vermelho">two days ago</span>
+        <span class="chip vermelho">in 2020</span>
+      </div>
+
+      <table class="tabela-comic">
+        <tr><th>Forma</th><th>Estrutura</th><th>Exemplo</th></tr>
+        <tr>
+          <td><span class="chip verde">✅ Afirmativo</span></td>
+          <td>Sujeito + verbo no passado</td>
+          <td>I <b>played</b> soccer.<br>She <b>went</b> home.</td>
+        </tr>
+        <tr>
+          <td><span class="chip vermelho">❌ Negativo</span></td>
+          <td>Sujeito + <b>didn't</b> + verbo BASE</td>
+          <td>I <b>didn't play</b> soccer.<br>She <b>didn't go</b> home.</td>
+        </tr>
+        <tr>
+          <td><span class="chip amarelo">❓ Pergunta</span></td>
+          <td><b>Did</b> + sujeito + verbo BASE?</td>
+          <td><b>Did</b> you <b>play</b> soccer?<br><b>Did</b> she <b>go</b> home?</td>
+        </tr>
+      </table>
+
+      <div class="balao-pegadinha">
+        <span class="pow">POW! 🚫</span>
+        Em <b>negativas</b> e <b>perguntas</b> com <b>did/didn't</b>, o verbo volta para a forma <b>BASE</b> (sem -ed)! É <i>"Did you play?"</i> e <b>nunca</b> <i>"Did you played?"</i>
+      </div>
+    </div>
+
+    <!-- VERBOS REGULARES -->
+    <div class="painel verde">
+      <div class="painel-titulo">📘 VERBOS REGULARES — só adiciona -ED!</div>
+      <p class="mb-1">A maioria dos verbos forma o passado adicionando <b>-ED</b>. Mas tem regrinhas de spelling:</p>
+
+      <table class="tabela-comic">
+        <tr><th>Regra</th><th>Como faz</th><th>Exemplos</th></tr>
+        <tr>
+          <td><b>Regra 1</b><br>(maioria)</td>
+          <td>+ <b>ed</b></td>
+          <td>play → <b>played</b><br>walk → <b>walked</b><br>watch → <b>watched</b></td>
+        </tr>
+        <tr>
+          <td><b>Regra 2</b><br>termina em <b>-e</b></td>
+          <td>+ <b>d</b></td>
+          <td>arrive → <b>arrived</b><br>like → <b>liked</b><br>dance → <b>danced</b></td>
+        </tr>
+        <tr>
+          <td><b>Regra 3</b><br>consoante + <b>y</b></td>
+          <td>tira y, põe <b>ied</b></td>
+          <td>study → <b>studied</b><br>try → <b>tried</b><br>cry → <b>cried</b></td>
+        </tr>
+        <tr>
+          <td><b>Regra 4</b><br>vogal + <b>y</b></td>
+          <td>só + <b>ed</b></td>
+          <td>play → <b>played</b><br>enjoy → <b>enjoyed</b><br>stay → <b>stayed</b></td>
+        </tr>
+        <tr>
+          <td><b>Regra 5</b><br>vogal + consoante (curto)</td>
+          <td>dobra consoante + <b>ed</b></td>
+          <td>scan → <b>scanned</b><br>plan → <b>planned</b><br>stop → <b>stopped</b></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- IRREGULARES -->
+    <div class="painel amarelo">
+      <div class="painel-titulo">⭐ VERBOS IRREGULARES — decoreba!</div>
+      <p class="mb-1">Não seguem regra. Cada um tem sua forma própria. Precisa <b>memorizar</b>! (Lista completa no fim do material 👇)</p>
+
+      <div class="exemplo">
+        <button class="btn-audio" onclick="falar('I went to school yesterday.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">I <span class="destaque">went</span> to school yesterday.</span>
+          <span class="traducao">go → went (eu fui à escola ontem)</span>
+        </div>
+      </div>
+      <div class="exemplo">
+        <button class="btn-audio" onclick="falar('She had breakfast at the hotel.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">She <span class="destaque">had</span> breakfast at the hotel.</span>
+          <span class="traducao">have → had (ela tomou café da manhã no hotel)</span>
+        </div>
+      </div>
+      <div class="exemplo">
+        <button class="btn-audio" onclick="falar('They saw many tourists in Rome.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">They <span class="destaque">saw</span> many tourists in Rome.</span>
+          <span class="traducao">see → saw (eles viram muitos turistas em Roma)</span>
+        </div>
+      </div>
+
+      <div class="dica">
+        <span class="icone">DICA DE OURO! 🌟</span> Os verbos que mais caem em prova: <b>be (was/were), have (had), go (went), do (did), see (saw), get (got), come (came), take (took), make (made), eat (ate), buy (bought)</b>.
+      </div>
+    </div>
+
+    <!-- PRACTICE TIME #4 -->
+    <div class="practice" id="practice4">
+      <div class="practice-header">PRACTICE TIME!</div>
+      <div class="practice-sub">Domine o passado, jovem aprendiz! 🎯</div>
+
+      <div class="practice-item">
+        <div class="practice-q">1. I <span class="blank" id="b4-1-disp">___</span> (arrive) in Rome last week.</div>
+        <input type="text" class="practice-input" id="p4-1" placeholder="..." oninput="atualizarBlank('b4-1-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p4-1', ['arrived'], 'arrive termina em E → só +d → arrived')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p4-1', 'arrived')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb4-1"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">2. We <span class="blank" id="b4-2-disp">___</span> (go) to Venice yesterday. <small>(irregular!)</small></div>
+        <input type="text" class="practice-input" id="p4-2" placeholder="..." oninput="atualizarBlank('b4-2-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p4-2', ['went'], 'go é irregular → went')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p4-2', 'went')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb4-2"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">3. She <span class="blank" id="b4-3-disp">___</span> (study) for the test last night.</div>
+        <input type="text" class="practice-input" id="p4-3" placeholder="..." oninput="atualizarBlank('b4-3-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p4-3', ['studied'], 'study = consoante+y → tira y, põe ied → studied')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p4-3', 'studied')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb4-3"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">4. They <span class="blank" id="b4-4-disp">___</span> (not visit) their grandma. <small>(forma negativa)</small></div>
+        <input type="text" class="practice-input" id="p4-4" placeholder="ex: didn't visit / didn't see..." oninput="atualizarBlank('b4-4-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p4-4', ['didn\\'t visit','did not visit'], 'Negativa = didn\\'t + verbo BASE → didn\\'t visit')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p4-4', 'didn\\'t visit')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb4-4"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">5. <span class="blank" id="b4-5-disp">___</span> you <span class="blank">have</span> breakfast this morning? <small>(pergunta no passado)</small></div>
+        <input type="text" class="practice-input" id="p4-5" placeholder="..." oninput="atualizarBlank('b4-5-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p4-5', ['did'], 'Pergunta no passado → DID + sujeito + verbo BASE')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p4-5', 'Did')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb4-5"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ ISSUE #5 — PAST CONTINUOUS ============ -->
+<div class="issue" id="issue5">
+  <div class="issue-header rosa">
+    <div class="issue-num">ISSUE #5</div>
+    <div class="issue-titulo">MEANWHILE...</div>
+    <div class="issue-sub">PAST CONTINUOUS · ENQUANTO AS COISAS ACONTECIAM</div>
+  </div>
+  <div class="issue-body">
+
+    <div class="painel azul">
+      <div class="painel-titulo">🎬 PAST CONTINUOUS — ação em andamento no passado</div>
+      <p class="mb-1">Usamos o <mark>Past Continuous</mark> (também chamado de Past Progressive) para falar de ações que <b>estavam acontecendo</b> em um momento do passado. Estavam <b>em andamento</b>.</p>
+
+      <div class="formula">SUJEITO + WAS / WERE + VERBO-ING</div>
+
+      <table class="tabela-comic">
+        <tr><th>Pronome</th><th>Forma do BE</th><th>Exemplo</th></tr>
+        <tr><td><b>I / He / She / It</b></td><td><span class="destaque">was</span></td><td>I <b>was watching</b> TV.</td></tr>
+        <tr><td><b>You / We / They</b></td><td><span class="destaque">were</span></td><td>They <b>were eating</b> popcorn.</td></tr>
+      </table>
+
+      <div class="exemplo">
+        <button class="btn-audio" onclick="falar('They were watching a movie when she called.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">They <span class="destaque">were watching</span> a movie when she called.</span>
+          <span class="traducao">Eles estavam assistindo um filme quando ela ligou.</span>
+        </div>
+      </div>
+      <div class="exemplo">
+        <button class="btn-audio" onclick="falar('I was riding my bike when I dropped my backpack.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">I <span class="destaque">was riding</span> my bike when I dropped my backpack.</span>
+          <span class="traducao">Eu estava andando de bicicleta quando deixei a mochila cair.</span>
+        </div>
+      </div>
+
+      <div class="balao-pegadinha">
+        <span class="pow">BAM! 💥</span>
+        Lembrete: <b>YOU</b>, mesmo singular, usa <b>WERE</b>! "<i>What were you doing?</i>" e nunca "What was you doing?"
+      </div>
+    </div>
+
+    <!-- WHEN / WHILE -->
+    <div class="painel rosa">
+      <div class="painel-titulo">⚡ WHEN vs WHILE — a dupla dinâmica</div>
+      <p class="mb-1">As duas significam mais ou menos a mesma coisa, mas se usam diferente:</p>
+
+      <table class="tabela-comic">
+        <tr><th>Palavra</th><th>Combina com</th><th>Significado</th></tr>
+        <tr>
+          <td><span class="destaque">WHEN</span></td>
+          <td>+ Simple Past</td>
+          <td>"quando" — ação curta que aconteceu</td>
+        </tr>
+        <tr>
+          <td><span class="destaque">WHILE</span></td>
+          <td>+ Past Continuous</td>
+          <td>"enquanto" — ação longa em andamento</td>
+        </tr>
+      </table>
+
+      <div class="exemplo verde">
+        <button class="btn-audio" onclick="falar('I was sleeping when the phone rang.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles">I was sleeping <span class="destaque">when</span> the phone rang.</span>
+          <span class="traducao">Eu estava dormindo <b>quando</b> o telefone tocou.</span>
+        </div>
+      </div>
+      <div class="exemplo verde">
+        <button class="btn-audio" onclick="falar('While I was studying, my brother was playing video games.')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles"><span class="destaque">While</span> I was studying, my brother was playing video games.</span>
+          <span class="traducao"><b>Enquanto</b> eu estudava, meu irmão estava jogando videogame.</span>
+        </div>
+      </div>
+
+      <div class="dica">
+        <span class="icone">SEGREDO! 🔑</span> A combinação clássica: <b>WHILE</b> + ação longa (Past Continuous), <b>WHEN</b> + ação curta que interrompe (Simple Past). <i>"While I was eating, the doorbell rang."</i>
+      </div>
+    </div>
+
+    <!-- DIFERENÇA SIMPLE x CONTINUOUS NO PASSADO -->
+    <div class="painel amarelo">
+      <div class="painel-titulo">🔄 SIMPLE PAST vs PAST CONTINUOUS</div>
+      <table class="tabela-comic">
+        <tr><th>Simple Past</th><th>Past Continuous</th></tr>
+        <tr>
+          <td><b>Ação rápida e terminada</b><br>I called my mom.</td>
+          <td><b>Ação em andamento</b><br>I was talking to my mom.</td>
+        </tr>
+        <tr>
+          <td>"Eu liguei pra mãe."<br>(Já terminou!)</td>
+          <td>"Eu estava falando com a mãe."<br>(Estava no meio da ação)</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- PRACTICE TIME #5 -->
+    <div class="practice" id="practice5">
+      <div class="practice-header">PRACTICE TIME!</div>
+      <div class="practice-sub">Mostre que você é dois super-heróis ao mesmo tempo! ⚡</div>
+
+      <div class="practice-item">
+        <div class="practice-q">1. They <span class="blank" id="b5-1-disp">___</span> (watch) a movie at 8 p.m. <small>(Past Continuous)</small></div>
+        <input type="text" class="practice-input" id="p5-1" placeholder="..." oninput="atualizarBlank('b5-1-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p5-1', ['were watching'], 'They → WERE + watch+ing → were watching')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p5-1', 'were watching')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb5-1"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">2. <span class="blank" id="b5-2-disp">___</span> I was riding my bike, I fell. <small>(when ou while?)</small></div>
+        <input type="text" class="practice-input" id="p5-2" placeholder="..." oninput="atualizarBlank('b5-2-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p5-2', ['while'], '"I was riding" é Past Continuous → combina com WHILE')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p5-2', 'While')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb5-2"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">3. The lights went out <span class="blank" id="b5-3-disp">___</span> we were watching the movie. <small>(when ou while?)</small></div>
+        <input type="text" class="practice-input" id="p5-3" placeholder="..." oninput="atualizarBlank('b5-3-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p5-3', ['while'], '"we were watching" é Past Continuous → WHILE')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p5-3', 'while')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb5-3"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">4. While my brother <span class="blank" id="b5-4-disp">___</span> (look) for his phone, he broke a glass. <small>(Past Continuous)</small></div>
+        <input type="text" class="practice-input" id="p5-4" placeholder="..." oninput="atualizarBlank('b5-4-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p5-4', ['was looking'], 'My brother = ele (singular) → WAS + look+ing → was looking')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p5-4', 'was looking')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb5-4"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">5. We <span class="blank" id="b5-5-disp">___</span> (have) lunch when the phone rang. <small>(Past Continuous)</small></div>
+        <input type="text" class="practice-input" id="p5-5" placeholder="..." oninput="atualizarBlank('b5-5-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p5-5', ['were having'], 'We → WERE + have+ing → were having')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p5-5', 'were having')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb5-5"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ ISSUE #6 — DETECTIVE MODE ============ -->
+<div class="issue" id="issue6">
+  <div class="issue-header amarelo">
+    <div class="issue-num">ISSUE #6</div>
+    <div class="issue-titulo">DETECTIVE MODE</div>
+    <div class="issue-sub">WH-QUESTIONS NO PASSADO 🔍</div>
+  </div>
+  <div class="issue-body">
+
+    <div class="painel azul">
+      <div class="painel-titulo">🔍 PALAVRAS-CHAVE WH-</div>
+      <table class="tabela-comic">
+        <tr><th>Palavra</th><th>Pergunta sobre</th></tr>
+        <tr><td><b>What</b></td><td>O quê?</td></tr>
+        <tr><td><b>Where</b></td><td>Onde?</td></tr>
+        <tr><td><b>When</b></td><td>Quando?</td></tr>
+        <tr><td><b>Why</b></td><td>Por quê?</td></tr>
+        <tr><td><b>Who</b></td><td>Quem?</td></tr>
+        <tr><td><b>How</b></td><td>Como?</td></tr>
+      </table>
+    </div>
+
+    <!-- COM SIMPLE PAST -->
+    <div class="painel verde">
+      <div class="painel-titulo">⚡ WH- + SIMPLE PAST (com DID)</div>
+      <div class="formula verde">WH- + DID + SUJEITO + VERBO BASE?</div>
+
+      <div class="exemplo">
+        <button class="btn-audio" onclick="falar('What did you do yesterday?')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles"><span class="destaque">What did</span> you do yesterday?</span>
+          <span class="traducao">O que você fez ontem?</span>
+        </div>
+      </div>
+      <div class="exemplo">
+        <button class="btn-audio" onclick="falar('Where did they go last summer?')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles"><span class="destaque">Where did</span> they go last summer?</span>
+          <span class="traducao">Onde eles foram no verão passado?</span>
+        </div>
+      </div>
+      <div class="exemplo">
+        <button class="btn-audio" onclick="falar('Who did you sit next to on the bus?')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles"><span class="destaque">Who did</span> you sit next to on the bus?</span>
+          <span class="traducao">Ao lado de quem você sentou no ônibus?</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- COM PAST CONTINUOUS -->
+    <div class="painel rosa">
+      <div class="painel-titulo">🎬 WH- + PAST CONTINUOUS (com WAS/WERE)</div>
+      <div class="formula">WH- + WAS / WERE + SUJEITO + VERBO-ING?</div>
+
+      <div class="exemplo verde">
+        <button class="btn-audio" onclick="falar('What were your parents doing when you got home?')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles"><span class="destaque">What were</span> your parents doing when you got home?</span>
+          <span class="traducao">O que seus pais estavam fazendo quando você chegou em casa?</span>
+        </div>
+      </div>
+      <div class="exemplo verde">
+        <button class="btn-audio" onclick="falar('Why were you talking during the class?')" aria-label="Ouvir">🔊</button>
+        <div>
+          <span class="ingles"><span class="destaque">Why were</span> you talking during the class?</span>
+          <span class="traducao">Por que você estava falando durante a aula?</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DICA OURO -->
+    <div class="painel amarelo">
+      <div class="painel-titulo">🏆 SEGREDO DO DETECTIVE — DID ou WAS/WERE?</div>
+      <table class="tabela-comic">
+        <tr><th>Pergunta</th><th>Use</th><th>Exemplo</th></tr>
+        <tr>
+          <td>Ação que aconteceu e terminou</td>
+          <td><span class="destaque">DID</span></td>
+          <td>What <b>did</b> you eat? (verbo base)</td>
+        </tr>
+        <tr>
+          <td>Ação que estava em andamento</td>
+          <td><span class="destaque">WAS / WERE</span></td>
+          <td>What <b>were</b> you eating? (verbo+ing)</td>
+        </tr>
+        <tr>
+          <td>"Estar" em algum lugar (ser/estar)</td>
+          <td><span class="destaque">WAS / WERE</span></td>
+          <td><b>Where were</b> you yesterday?</td>
+        </tr>
+      </table>
+
+      <div class="balao-pegadinha">
+        <span class="pow">POW! 🎯</span>
+        Resposta curta: <b>"Yes, I was."</b> / <b>"No, I wasn't."</b> (com was/were) ou <b>"Yes, I did."</b> / <b>"No, I didn't."</b> (com did). Use o mesmo auxiliar da pergunta!
+      </div>
+    </div>
+
+    <!-- PRACTICE TIME #6 -->
+    <div class="practice" id="practice6">
+      <div class="practice-header">PRACTICE TIME!</div>
+      <div class="practice-sub">Caso encerrado, jovem detetive! 🔍</div>
+
+      <div class="practice-item">
+        <div class="practice-q">1. <span class="blank" id="b6-1-disp">___</span> what your parents doing when you got home? <small>(use was/were ou did)</small></div>
+        <input type="text" class="practice-input" id="p6-1" placeholder="ex: were... ou did..." oninput="atualizarBlank('b6-1-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p6-1', ['were'], 'doing = verbo+ing → Past Continuous → WERE')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p6-1', 'were')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb6-1"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">2. When <span class="blank" id="b6-2-disp">___</span> they finish the project? <small>(verbo base = finish)</small></div>
+        <input type="text" class="practice-input" id="p6-2" placeholder="..." oninput="atualizarBlank('b6-2-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p6-2', ['did'], 'finish = verbo BASE → Simple Past → DID')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p6-2', 'did')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb6-2"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">3. Where <span class="blank" id="b6-3-disp">___</span> you have lunch last Sunday? <small>(have = base)</small></div>
+        <input type="text" class="practice-input" id="p6-3" placeholder="..." oninput="atualizarBlank('b6-3-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p6-3', ['did'], 'have = verbo BASE → DID')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p6-3', 'did')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb6-3"></div>
+      </div>
+
+      <div class="practice-item">
+        <div class="practice-q">4. Why <span class="blank" id="b6-4-disp">___</span> Maia smiling at you? <small>(smiling = verbo+ing)</small></div>
+        <input type="text" class="practice-input" id="p6-4" placeholder="..." oninput="atualizarBlank('b6-4-disp', this.value)">
+        <div class="practice-btns">
+          <button class="btn-pratica" onclick="conferir('p6-4', ['was'], 'Maia = ela + smiling (verbo+ing) → WAS')">✅ Conferir</button>
+          <button class="btn-pratica ver" onclick="verResposta('p6-4', 'was')">👁️ Ver resposta</button>
+        </div>
+        <div class="practice-feedback" id="fb6-4"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ VERBOS IRREGULARES ============ -->
+<div class="issue" id="irregulares">
+  <div class="issue-header">
+    <div class="issue-num">BÔNUS</div>
+    <div class="issue-titulo">IRREGULAR HEROES</div>
+    <div class="issue-sub">⭐ TOP 30 VERBOS IRREGULARES PARA DECORAR</div>
+  </div>
+  <div class="issue-body">
+
+    <p class="mb-2">Esses são os irregulares mais comuns das provas. Clique no <b>🔊</b> para ouvir a pronúncia em inglês:</p>
+
+    <div class="lista-irregulares" id="lista-irreg">
+      <!-- preenchido via JS -->
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ GLOSSÁRIO ============ -->
+<div class="issue" id="glossario">
+  <div class="issue-header azul">
+    <div class="issue-num">EXTRA</div>
+    <div class="issue-titulo">GLOSSARY</div>
+    <div class="issue-sub">📖 termos importantes</div>
+  </div>
+  <div class="issue-body">
+    <div class="glossario-grid">
+      <div class="gloss-item"><div class="gloss-term">Simple Present</div>Tempo verbal para hábitos, rotinas e fatos (every day, always)</div>
+      <div class="gloss-item"><div class="gloss-term">Present Continuous</div>Ação acontecendo agora (be + verbo-ing)</div>
+      <div class="gloss-item"><div class="gloss-term">Simple Past</div>Ação que aconteceu e terminou no passado (yesterday, last week)</div>
+      <div class="gloss-item"><div class="gloss-term">Past Continuous</div>Ação em andamento no passado (was/were + verbo-ing)</div>
+      <div class="gloss-item"><div class="gloss-term">Auxiliary Verb</div>Verbo auxiliar: do, does, did, am, is, are, was, were</div>
+      <div class="gloss-item"><div class="gloss-term">Base Form</div>Forma base do verbo (sem -ed, -s ou -ing). Usada após did/didn't/do/does</div>
+      <div class="gloss-item"><div class="gloss-term">Regular Verb</div>Verbo regular: passado com -ed (play → played)</div>
+      <div class="gloss-item"><div class="gloss-term">Irregular Verb</div>Verbo irregular: forma própria no passado (go → went)</div>
+      <div class="gloss-item"><div class="gloss-term">Comparative</div>Comparativo: -er than ou more...than (taller than)</div>
+      <div class="gloss-item"><div class="gloss-term">Superlative</div>Superlativo: the -est ou the most (the tallest)</div>
+      <div class="gloss-item"><div class="gloss-term">Affirmative</div>Frase afirmativa (positiva) — I played</div>
+      <div class="gloss-item"><div class="gloss-term">Negative</div>Frase negativa — I didn't play / I'm not playing</div>
+      <div class="gloss-item"><div class="gloss-term">Interrogative</div>Pergunta — Did you play? / Are you playing?</div>
+      <div class="gloss-item"><div class="gloss-term">Short Answer</div>Resposta curta — Yes, I do. / No, I wasn't.</div>
+      <div class="gloss-item"><div class="gloss-term">When</div>"quando" + Simple Past (ação curta)</div>
+      <div class="gloss-item"><div class="gloss-term">While</div>"enquanto" + Past Continuous (ação longa)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MENSAGEM FINAL ============ -->
+<div class="final-pow">
+  <h2>YOU'RE READY! 💥</h2>
+  <p>Jovem aprendiz, você completou o treinamento! Agora é hora de partir para o <b>Quiz Interativo</b> e o <b>Simulado</b>. Nos vemos lá! ⚡🦸</p>
+</div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">💾 Saved!</div>
+
+<script>
+const STORAGE_KEY = 'ingles_resumo_fixacao_v1';
+
+// ============ ÁUDIO (Web Speech API) ============
+function falar(texto) {
+  if (!('speechSynthesis' in window)) {
+    alert('Seu navegador não suporta leitura em voz alta. Tente o Chrome ou Edge.');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(texto);
+  u.lang = 'en-US';
+  u.rate = 0.82;
+  u.pitch = 1;
+  window.speechSynthesis.speak(u);
+}
+
+// ============ VERBOS IRREGULARES ============
+const IRREGULARES = [
+  {base:'be',past:'was/were',pt:'ser/estar'},
+  {base:'have',past:'had',pt:'ter'},
+  {base:'do',past:'did',pt:'fazer'},
+  {base:'go',past:'went',pt:'ir'},
+  {base:'see',past:'saw',pt:'ver'},
+  {base:'come',past:'came',pt:'vir'},
+  {base:'get',past:'got',pt:'pegar/conseguir'},
+  {base:'make',past:'made',pt:'fazer/produzir'},
+  {base:'take',past:'took',pt:'pegar/levar'},
+  {base:'eat',past:'ate',pt:'comer'},
+  {base:'drink',past:'drank',pt:'beber'},
+  {base:'buy',past:'bought',pt:'comprar'},
+  {base:'bring',past:'brought',pt:'trazer'},
+  {base:'think',past:'thought',pt:'pensar'},
+  {base:'say',past:'said',pt:'dizer'},
+  {base:'tell',past:'told',pt:'contar'},
+  {base:'give',past:'gave',pt:'dar'},
+  {base:'find',past:'found',pt:'encontrar'},
+  {base:'know',past:'knew',pt:'saber/conhecer'},
+  {base:'feel',past:'felt',pt:'sentir'},
+  {base:'leave',past:'left',pt:'deixar/partir'},
+  {base:'meet',past:'met',pt:'encontrar/conhecer'},
+  {base:'read',past:'read',pt:'ler'},
+  {base:'write',past:'wrote',pt:'escrever'},
+  {base:'speak',past:'spoke',pt:'falar'},
+  {base:'sleep',past:'slept',pt:'dormir'},
+  {base:'wake',past:'woke',pt:'acordar'},
+  {base:'break',past:'broke',pt:'quebrar'},
+  {base:'cut',past:'cut',pt:'cortar'},
+  {base:'put',past:'put',pt:'colocar'},
+  {base:'run',past:'ran',pt:'correr'},
+  {base:'swim',past:'swam',pt:'nadar'},
+  {base:'sing',past:'sang',pt:'cantar'},
+  {base:'fly',past:'flew',pt:'voar'},
+  {base:'drive',past:'drove',pt:'dirigir'},
+  {base:'choose',past:'chose',pt:'escolher'},
+  {base:'lose',past:'lost',pt:'perder'},
+  {base:'send',past:'sent',pt:'enviar'},
+];
+
+function renderizarIrregulares() {
+  const cont = document.getElementById('lista-irreg');
+  cont.innerHTML = IRREGULARES.map(v => `
+    <div class="verbo-irregular">
+      <div class="par">
+        <span class="base">${v.base}</span>
+        <span class="past">→ ${v.past}</span>
+        <span class="pt">${v.pt}</span>
+      </div>
+      <button class="btn-audio pequeno" onclick="falar('${v.base}, ${v.past.replace('/',' or ')}')">🔊</button>
+    </div>
+  `).join('');
+}
+
+// ============ SISTEMA DE PRÁTICA ============
+let respostas = {}; // { 'p1-1': {valor: 'studies', resultado: 'correto'}, ... }
+
+function atualizarBlank(blankId, valor) {
+  const el = document.getElementById(blankId);
+  if (el) {
+    el.textContent = valor || '___';
+    el.classList.toggle('preenchido', !!valor);
+  }
+}
+
+function normalizar(s) {
+  return (s||'').trim().toLowerCase()
+    .replace(/['']/g, "'")
+    .replace(/\s+/g, ' ');
+}
+
+function conferir(inputId, corretas, explicacao) {
+  const inp = document.getElementById(inputId);
+  const fb = document.getElementById('fb' + inputId.substring(1));
+  const valor = normalizar(inp.value);
+
+  if (!valor) {
+    fb.className = 'practice-feedback errado';
+    fb.textContent = '⚠️ Digite sua resposta primeiro!';
+    return;
+  }
+
+  const acertou = corretas.some(c => normalizar(c) === valor);
+
+  if (acertou) {
+    inp.classList.remove('errada');
+    inp.classList.add('correta');
+    fb.className = 'practice-feedback correto';
+    fb.innerHTML = '✅ <b>Correto!</b> ' + explicacao;
+    respostas[inputId] = { valor: inp.value, resultado: 'correto' };
+  } else {
+    inp.classList.remove('correta');
+    inp.classList.add('errada');
+    fb.className = 'practice-feedback errado';
+    fb.innerHTML = '❌ <b>Quase!</b> ' + explicacao;
+    respostas[inputId] = { valor: inp.value, resultado: 'errado' };
+  }
+
+  salvar();
+}
+
+function verResposta(inputId, resposta) {
+  const fb = document.getElementById('fb' + inputId.substring(1));
+  fb.className = 'practice-feedback modelo';
+  fb.innerHTML = '👁️ <b>Resposta:</b> <span style="font-family:Bungee,sans-serif;">' + resposta.replace(/\\'/g, "'") + '</span>';
+}
+
+// ============ SALVAMENTO ============
+function salvar() {
+  const estado = {
+    respostas: respostas,
+    inputs: {},
+    timestamp: new Date().toISOString()
+  };
+  // captura todos os valores dos inputs de prática
+  document.querySelectorAll('.practice-input').forEach(i => {
+    if (i.value) estado.inputs[i.id] = i.value;
+  });
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(estado));
+    atualizarUltimoSave();
+    mostrarToast('💾 Saved!');
+  } catch(e) {
+    console.error('Erro ao salvar:', e);
+  }
+}
+
+function carregar() {
+  try {
+    const dado = localStorage.getItem(STORAGE_KEY);
+    if (!dado) return;
+    const estado = JSON.parse(dado);
+
+    // restaurar inputs
+    if (estado.inputs) {
+      Object.keys(estado.inputs).forEach(id => {
+        const inp = document.getElementById(id);
+        if (inp) {
+          inp.value = estado.inputs[id];
+          // atualiza o blank visual também
+          const blankId = 'b' + id.substring(1) + '-disp';
+          atualizarBlank(blankId, estado.inputs[id]);
+        }
+      });
+    }
+
+    // restaurar feedbacks
+    if (estado.respostas) {
+      respostas = estado.respostas;
+      Object.keys(respostas).forEach(id => {
+        const r = respostas[id];
+        const inp = document.getElementById(id);
+        if (inp && r.resultado === 'correto') inp.classList.add('correta');
+        if (inp && r.resultado === 'errado') inp.classList.add('errada');
+      });
+    }
+
+    atualizarUltimoSave();
+  } catch(e) { console.error('Erro ao carregar:', e); }
+}
+
+function atualizarUltimoSave() {
+  try {
+    const dado = localStorage.getItem(STORAGE_KEY);
+    if (!dado) {
+      document.getElementById('ultimo-save').textContent = '—';
+      return;
+    }
+    const estado = JSON.parse(dado);
+    if (estado.timestamp) {
+      const d = new Date(estado.timestamp);
+      const data = d.toLocaleDateString('pt-BR');
+      const hora = d.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+      document.getElementById('ultimo-save').textContent = data + ' às ' + hora;
+    }
+  } catch(e) {}
+}
+
+function exportarProgresso() {
+  const dado = localStorage.getItem(STORAGE_KEY);
+  if (!dado) {
+    alert('Ainda não há progresso para exportar. Faça pelo menos 1 exercício antes!');
+    return;
+  }
+  const blob = new Blob([dado], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'ingles_resumo_progresso_' + new Date().toISOString().split('T')[0] + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  mostrarToast('📥 Exported!');
+}
+
+function importarProgresso(event) {
+  const arquivo = event.target.files[0];
+  if (!arquivo) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const conteudo = e.target.result;
+      JSON.parse(conteudo); // valida
+      localStorage.setItem(STORAGE_KEY, conteudo);
+      location.reload();
+    } catch(err) {
+      alert('Arquivo inválido. Tente outro.');
+    }
+  };
+  reader.readAsText(arquivo);
+  event.target.value = '';
+}
+
+function zerarProgresso() {
+  if (!confirm('Tem certeza que deseja apagar TODO o progresso? Essa ação não pode ser desfeita.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
+function mostrarToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('visible');
+  setTimeout(() => t.classList.remove('visible'), 2000);
+}
+
+// ============ INIT ============
+document.addEventListener('DOMContentLoaded', () => {
+  renderizarIrregulares();
+  carregar();
+});
+</script>
+
+</body>
+</html>
